@@ -37,7 +37,7 @@ module.exports.routes = {
   'get /signup': { view: 'User/signup' },
   'post /login': 'UserController.login',
   'post /signup': 'UserController.signup',
-  '/logout': 'UserController.logout'
+  '/logout': 'UserController.logout',
 
   /***************************************************************************
   *                                                                          *
@@ -49,4 +49,9 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
+  // Custom CRUD Rest Routes
+    'get /vehicle/:id?': 'VehiceController.find',
+    'post /vehicle': 'VehiceController.create',
+    'put /vehicle/:id?': 'VehiceController.update',
+    'delete /vehicle/:id?': 'VehiceController.destroy'
 };
