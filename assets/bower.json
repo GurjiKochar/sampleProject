@@ -28,6 +28,6 @@
     "bootstrap": "~3.3.5"
   },
   "resolutions": {
-    "angular": "1.2.29"
+    "angular": ">=1"
   }
 }
