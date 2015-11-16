@@ -50,6 +50,7 @@ module.exports.routes = {
   ***************************************************************************/
 
   // Custom CRUD Rest Routes
+    'get /sellvehicle': { view: 'vehicle/sellvehicle' },
     'get /vehicle/:id?': 'VehiceController.find',
     'post /vehicle': 'VehiceController.create',
     'put /vehicle/:id?': 'VehiceController.update',
