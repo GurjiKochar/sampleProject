@@ -63,6 +63,11 @@ module.exports = {
 			model: 'modelName',
 			columnName: 'modelName_id',
 			required: true
+		},
+		cities: {
+			model: 'masterCities',
+			columnName: 'city_id',
+			required: true
 		}
 
 	}

@@ -20,6 +20,11 @@ module.exports = {
 		vehicle: {
 			collection : 'vehicle',
 			via :'modelName'
+		},
+		manufacturer: {
+			model: 'manufacturer',
+			columnName: 'manufacturer_id',
+			required: true
 		}
 	}
 };

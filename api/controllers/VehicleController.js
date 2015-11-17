@@ -8,12 +8,23 @@
 module.exports = {
 	// a CREATE action  
 	create: function(req, res, next) {
-
+        console.log ('====--------=========---------')
 	    var params = req.params.all();
 
-	    Vehicle.create(params, function(err, vehicle) {
+        var v = {};
 
-	        if (err) return next(err);
+        v.user = 1;
+        v.manufacturer = params.manufacturerId;
+        v.bodyType = params.bodyTypeId;
+        v.modelName =params.model;
+        v.cities =params.cityId;
+        v.minPrice = params.minPrice;
+        v.maxPrice =params.maxPrice;
+        v.yearOfManufacture = params.yearOfManufacture;
+
+	    Vehicle.create(v, function(err, vehicle) {
+
+	        if (err) console.log(err); return next(err);
 
 	        res.status(201);
 
@@ -93,7 +104,7 @@ module.exports = {
         } else {
 
             var where = req.param('where');
-
+            console.log(where);
             if (_.isString(where)) {
                 where = JSON.parse(where);
             }

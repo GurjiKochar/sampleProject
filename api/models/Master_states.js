@@ -23,7 +23,7 @@ module.exports = {
 			required: true
 		},
 		cities: {
-			collection : 'master_cities',
+			collection : 'masterCities',
 			via :'state'
 		}
 	}
