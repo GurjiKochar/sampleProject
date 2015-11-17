@@ -51,8 +51,15 @@ module.exports.routes = {
 
   // Custom CRUD Rest Routes
     'get /sellvehicle': { view: 'vehicle/sellvehicle' },
-    'get /vehicle/:id?': 'VehiceController.find',
-    'post /vehicle': 'VehiceController.create',
-    'put /vehicle/:id?': 'VehiceController.update',
-    'delete /vehicle/:id?': 'VehiceController.destroy'
+    'get /vehicle/:id?': 'VehicleController.find',
+    'POST /vehicle': 'VehicleController.create',
+    'put /vehicle/:id': 'VehicleController.update',
+    'delete /vehicle/:id?': 'VehicleController.destroy',
+
+    // Apis
+
+    'get /api/manufacturer/all': 'ManufacturerController.findAll',
+    'get /api/manufacturer/modelnames/:man_id' : 'ModelNameController.findByManufacturerId',
+    'get /api/bodytype/all' : 'BodyTypeController.findAll',
+    'get /api/cities/all' : 'MasterCitiesController.findAll'
 };

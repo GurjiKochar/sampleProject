@@ -21,6 +21,10 @@ module.exports = {
 			model: 'master_states',
 			columnName: 'state_id',
 			required: true
+		},
+		vehicle: {
+			collection : 'vehicle',
+			via :'cities'
 		}
 	}
 };

@@ -20,6 +20,10 @@ module.exports = {
 		vehicle: {
 			collection : 'vehicle',
 			via :'manufacturer'
+		},
+		modelName: {
+			collection : 'modelName',
+			via :'manufacturer'
 		}
 	}
 };
