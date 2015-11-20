@@ -9,82 +9,50 @@ module.exports = {
 
   connection: 'someMysqlServer',
   migrate: 'alter',
+  autoPK: true,
+  autoCreatedAt: true,
+  autoUpdatedAt: true,
   tableName: 'users',
   attributes: {
-  	id: {
-      type: 'integer',
-      unique: true,
-      primaryKey: true,
-      columnName: 'user_id'
-    },
     name: {
       type: 'string',
-      columnName: 'full_name'
-    },
-    password: {
-      type: 'string',
-      columnName: 'password'
-    },
-    mobileNumber: {
-      type: 'integer',
-      unique: true,
-      columnName: 'mobile_number'
+      columnName: 'full_name',
+      required: true
     },
     email: {
       type: 'email',
       unique: true,
-      columnName: 'email'
+      columnName: 'email',
+      required: true
     },
-	vehicle: {
-		collection : 'vehicle',
-		via :'user'
-	}
-  },
+    mobileNumber: {
+      type: 'string',
+      unique: true,
+      required: true,
+      columnName: 'mobile_number'
+    },
+    password: {
+      type: 'string',
+      columnName: 'password',
+      required: true
+    },
+    // The timestamp when the the user last logged in
+    // (i.e. sent a username and password to the server)
+    lastLoggedIn: {
+      type: 'date',
+      required: true,
+      defaultsTo: new Date(0)
+    },
 
+    // url for gravatar
+    gravatarUrl: {
+      type: 'string'
+    },
 
-    /**
-   * Create a new user using the provided inputs,
-   * but encrypt the password first.
-   *
-   * @param  {Object}   inputs
-   *                     • name     {String}
-   *                     • email    {String}
-   *                     • password {String}
-   * @param  {Function} cb
-   */
-
-  signup: function (inputs, cb) {
-    // Create a user
-    User.create({
-      name: inputs.name,
-      email: inputs.email,
-      mobileNumber:inputs.mobile_number,
-      // TODO: But encrypt the password first
-      password: inputs.password
-    })
-    .exec(cb);
-  },
-
-
-
-  /**
-   * Check validness of a login using the provided inputs.
-   * But encrypt the password first.
-   *
-   * @param  {Object}   inputs
-   *                     • email    {String}
-   *                     • password {String}
-   * @param  {Function} cb
-   */
-
-  attemptLogin: function (inputs, cb) {
-    // Create a user
-    User.findOne({
-      email: inputs.mobileNumber,
-      // TODO: But encrypt the password first
-      password: inputs.password
-    })
-    .exec(cb);
+  	vehicle: {
+  		collection : 'vehicle',
+  		via :'user'
+  	}
   }
 
 
