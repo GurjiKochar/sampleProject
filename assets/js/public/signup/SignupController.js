@@ -13,7 +13,7 @@ angular.module('SignupModule').controller('SignupController', ['$scope', '$http'
 		// Submit request to Sails.
 		$http.post('/signup', {
 			name: $scope.signupForm.name,
-			title: $scope.signupForm.title,
+			mobileNumber: $scope.signupForm.mobileNumber,
 			email: $scope.signupForm.email,
 			password: $scope.signupForm.password
 		})

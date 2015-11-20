@@ -89,6 +89,10 @@ module.exports = {
 
         var id = req.param('id');
 
+        console.log(req.session.me);
+
+        console.log('tuyiujhgkjlkm');
+
         if (id) {
 
             Vehicle.findOne(id, function(err, vehicle) {
@@ -104,7 +108,6 @@ module.exports = {
         } else {
 
             var where = req.param('where');
-            console.log(where);
             if (_.isString(where)) {
                 where = JSON.parse(where);
             }

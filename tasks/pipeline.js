@@ -32,6 +32,7 @@ var jsFilesToInject = [
   '/bower_components/jquery/dist/jquery.js',
   '/bower_components/angular/angular.js',
   '/bower_components/angular-route/angular-route.js',
+  '/bower_components/angular-bootstrap/ui-bootstrap.min.js',
   '/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
   '/bower_components/bootstrap/dist/js/boostrap.js',
   '/bower_components/angular-toastr/dist/angular-toastr.min.js',
@@ -44,6 +45,7 @@ var jsFilesToInject = [
   // will be injected here in no particular order.
   'js/public/signup/SignupModule.js',
   '/js/public/vehicle/SellVehicleModule.js',
+  '/js/public/homepage/HomepageModule.js',
   'js/**/*.js',
 
   // Use the "exclude" operator to ignore files
