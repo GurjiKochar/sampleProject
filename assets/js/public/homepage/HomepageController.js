@@ -49,7 +49,6 @@ angular.module('HomepageModule').controller('HomepageController', ['$scope', '$h
     });
   };
 
-
 }]);
 
 
@@ -108,8 +107,20 @@ angular.module('HomepageModule').controller('loginModalInstanceCtrl', ['$scope',
 	$scope.loginForm = {
 		loading: false
 	}
+	$scope.status = {
+	    isopen: false
+	  };
 
-	$scope.submitLoginForm = function(){
+	  $scope.toggled = function(open) {
+	    $log.log('Dropdown is now: ', open);
+	  };
+
+	  $scope.toggleDropdown = function($event) {
+	    $event.preventDefault();
+	    $event.stopPropagation();
+	    $scope.status.isopen = !$scope.status.isopen;
+	  };
+	 $scope.submitLoginForm = function(){
 
 		// Set the loading state (i.e. show loading spinner)
 		$scope.loginForm.loading = true;
