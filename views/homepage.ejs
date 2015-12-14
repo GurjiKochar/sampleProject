@@ -133,8 +133,8 @@
             <div class="carousel" id="templatemo-carousel">
                 <div class="container-fluid">
                     <div class="row-fluid">
-                        <div class="col-md-4">
-                            <form role="form" name="searchForm">
+                        <div class="col-md-12">
+                            <form role="form" name="searchForm" class="searchForm">
                                 <div class="form-group">
                                     <label>Manufacturer</label>
                                       <select class="form-control" ng-change="unitChanged()" ng-model="search.manufacturerId">
@@ -154,13 +154,21 @@
                                 </button>
                             </form>
                         </div>
-                        <div class="col-md-8">
-                        </div>
                     </div>
                 </div>
             </div>
         
-        <div>
+
+
+        <div class="templatemo-welcome" id="templatemo-welcome">
+            <div class="container">
+                <div class="templatemo-slogan text-center">
+                    <span class="txt_darkgrey">Welcome to </span><span class="txt_orange">Truck Nagar</span>
+                    <p class="txt_slogan"><i>India's first online marketplace for commercial vehicles</i></p>
+                </div>  
+            </div>
+        </div>
+         <div>
             <!-- Carousel -->
             <div id="templatemo-carousel" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
@@ -208,17 +216,7 @@
                 <a class="left carousel-control" href="#templatemo-carousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
                 <a class="right carousel-control" href="#templatemo-carousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
             </div><!-- /#templatemo-carousel -->
-        </div>
-
-        <div class="templatemo-welcome" id="templatemo-welcome">
-            <div class="container">
-                <div class="templatemo-slogan text-center">
-                    <span class="txt_darkgrey">Welcome to </span><span class="txt_orange">Urbanic Design</span>
-                    <p class="txt_slogan"><i>Lorem ipsum dolor sit amet, consect adipiscing elit. Etiam metus libero mauriec ignissim fermentum.</i></p>
-                </div>  
-            </div>
-        </div>
-        
+        </div>       
         <div class="templatemo-service">
             <div class="container">
                 <div class="row">
@@ -681,6 +679,51 @@
                 </div>
             </div>
         </div>
+
+                <div class="templatemo-partners" >
+            <div class="container">
+                <div class="row">
+
+
+                    <div class="templatemo-line-header" >
+                        <div class="text-center">
+                            <hr class="team_hr team_hr_left hr_gray"/><span class="txt_darkgrey">SEARCH BY BODY TYPE</span>
+                            <hr class="team_hr team_hr_right hr_gray" />
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+
+                    <div class="text-center">
+
+                        <div style="margin-top:60px;">
+                            <ul class="list-inline">
+                                <li class="col-sm-2 col-md-2 templatemo-partner-item">
+                                    <a href="#"><img src="images/Cabs_icon.png" class="img-responsive" alt="Cabs Trucknagar" /></a>
+                                </li>
+                                <li class="col-sm-2 col-md-2 templatemo-partner-item">
+                                    <a href="#"><img src="images/Chassis_icon.png" class="img-responsive" alt="Chassis Trucknagar" /></a>
+                                </li>
+                                <li class="col-sm-2 col-md-2 templatemo-partner-item">
+                                    <a href="#"><img src="images/Delivery_Vans_icon.png" class="img-responsive" alt="partner 3" /></a>
+                                </li>
+                                <li class="col-sm-2 col-md-2 templatemo-partner-item">
+                                    <a href="#"><img src="images/Haulage_icon.png" class="img-responsive" alt="partner 4" /></a>
+                                </li>
+                                <li class="col-sm-2 col-md-2 templatemo-partner-item">
+                                    <a href="#"><img src="images/Rigid_Trucks_icon.png" class="img-responsive" alt="partner 5" /></a>
+                                </li>
+                                <li class="col-sm-2 col-md-2 templatemo-partner-item">
+                                    <a href="#"><img src="images/Tippers_icon.png" class="img-responsive" alt="partner 6" /></a>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="templatemo-contact">
             <div class="container">
                 <div class="row">
@@ -779,7 +822,9 @@
         <script src="/js/public/signup/SignupModule.js"></script>
         <script src="/js/public/vehicle/SellVehicleModule.js"></script>
         <script src="/js/public/homepage/HomepageModule.js"></script>
+        <script src="/js/public/results/searchResultsModule.js"></script>
         <script src="/js/public/homepage/HomepageController.js"></script>
+        <script src="/js/public/results/searchResultsController.js"></script>
         <script src="/js/public/signup/SignupController.js"></script>
         <script src="/js/public/vehicle/SellVehicleController.js"></script>
         <!--SCRIPTS END-->

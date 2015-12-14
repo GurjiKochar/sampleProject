@@ -24,7 +24,7 @@
  */
 
 module.exports.blueprints = {
-    actions: false,
+  actions: false,
   rest: false,
   shortcuts: false
 

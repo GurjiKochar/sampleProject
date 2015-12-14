@@ -49,6 +49,9 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
+    'get /commercial-vehicle-results': 'VehicleController.find',
+    'post /file/upload' : 'VehicleController.upload',
+
   // Custom CRUD Rest Routes
     'get /sellvehicle': { view: 'vehicle/sellvehicle' },
     'get /vehicle/:id?': 'VehicleController.find',

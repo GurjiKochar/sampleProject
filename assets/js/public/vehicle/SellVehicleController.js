@@ -85,7 +85,8 @@ angular.module('SellVehicleModule').controller('SellVehicleController', ['$scope
 			minPrice: $scope.sellVehicleForm.minPrice,
 			maxPrice : $scope.sellVehicleForm.maxPrice,
 			yearOfManufacture : $scope.sellVehicleForm.yearOfManufacture,
-			cityId : $scope.sellVehicleForm.cityId
+			cityId : $scope.sellVehicleForm.cityId,
+			uploadFile : $scope.file
 		})
 		.then(function onSuccess(sailsResponse){
 			window.location = '/';
@@ -107,4 +108,18 @@ angular.module('SellVehicleModule').controller('SellVehicleController', ['$scope
 			$scope.sellVehicleForm.loading = false;
 		})
 	}
-}]);
+
+}]).directive('file', function () {
+	    return {
+	        scope: {
+	            file: '='
+	        },
+	        link: function (scope, el, attrs) {
+	            el.bind('change', function (event) {
+	                var file = event.target.files[0];
+	                scope.file = file ? file : undefined;
+	                scope.$apply();
+	            });
+	        }
+	    };
+	});;

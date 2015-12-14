@@ -48,6 +48,7 @@ var jsFilesToInject = [
   'js/public/signup/SignupModule.js',
   '/js/public/vehicle/SellVehicleModule.js',
   '/js/public/homepage/HomepageModule.js',
+  '/js/public/results/searchResultsModule.js',
   'js/**/*.js',
 
   // Use the "exclude" operator to ignore files
