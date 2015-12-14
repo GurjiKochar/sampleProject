@@ -8,8 +8,21 @@
 module.exports = {
 	// a CREATE action  
 	create: function(req, res, next) {
-        console.log ('====--------=========---------')
-	    var params = req.params.all();
+        var uploadFile = req.file('uploadFile');
+        console.log(uploadFile);
+
+        var updfiles= uploadFile.upload({ dirname: '../../assets/ListingImages'}, function onUploadComplete (err, files) {
+                                                                                
+            if (err) return res.serverError(err);                               
+            //  IF ERROR Return and send 500 error with error
+            
+            console.log(files);
+
+            return files;
+
+        });
+	    console.log(updfiles);
+        var params = req.params.all();
 
         var v = {};
 
@@ -59,6 +72,24 @@ module.exports = {
 
     },
 
+    upload: function(req, res, next) {
+
+    var uploadFile = req.file('uploadFile');
+        console.log(uploadFile);
+
+        uploadFile.upload({ dirname: '../../assets/ListingImages'},function onUploadComplete (err, files) {              
+        //  Files will be uploaded to .tmp/uploads
+                                                                                
+            if (err) return res.serverError(err);                               
+            //  IF ERROR Return and send 500 error with error
+            
+            console.log(files);
+            res.json({status:200,file:files});
+        });
+
+},
+
+
 
     // a DESTROY action
     destroy: function(req, res, next) {
@@ -88,10 +119,7 @@ module.exports = {
     find: function(req, res, next) {
 
         var id = req.param('id');
-
-        console.log(req.session.me);
-
-        console.log('tuyiujhgkjlkm');
+        console.log(req.url);
 
         if (id) {
 
@@ -119,13 +147,14 @@ module.exports = {
                 where: where || undefined
             };
 
-            Vehicle.find(options, function(err, vehicle) {
+            Vehicle.find(options).populate('cities').populate('manufacturer').populate('modelName').exec( function(err, vehicle) {
 
                 if (vehicle === undefined) return res.notFound();
 
                 if (err) return next(err);
 
-                res.json(vehicle);
+                console.log({json:JSON.stringify(vehicle)});
+                return res.view('Results/searchResults',{json:JSON.stringify(vehicle)});
 
             });
 
