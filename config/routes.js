@@ -35,9 +35,6 @@ module.exports.routes = {
   '/': { view: 'homepage' },
   'get /login': { view: 'User/login' },
   'get /signup': { view: 'User/signup' },
-  'post /login': 'UserController.login',
-  'post /signup': 'UserController.signup',
-  'get /logout': 'UserController.logout',
 
   /***************************************************************************
   *                                                                          *
@@ -48,16 +45,23 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
+    // Apis
 
-    'get /commercial-vehicle-results': 'VehicleController.find',
-    'post /file/upload' : 'VehicleController.upload',
+    'post /login': 'UserController.login',
+    'post /signup': 'UserController.signup',
+    'get /logout': 'UserController.logout',
 
-  // Custom CRUD Rest Routes
-    'get /sellvehicle': { view: 'vehicle/sellvehicle' },
-    'get /vehicle/:id?': 'VehicleController.find',
+    'get /api/vehicle/search/:id?': 'VehicleController.find',
     'POST /vehicle': 'VehicleController.create',
     'put /vehicle/:id': 'VehicleController.update',
     'delete /vehicle/:id?': 'VehicleController.destroy',
+
+
+    'get /api/cities/all' : 'MasterCitiesController.findAll',
+    'get /api/cities/:id' : 'MasterCitiesController.find',
+
+  // Custom CRUD Rest Routes
+    'get /sellvehicle': { view: 'vehicle/sellvehicle' },
 
     // Apis
 
