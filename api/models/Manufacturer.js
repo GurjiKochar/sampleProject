@@ -7,24 +7,37 @@
 
 module.exports = {
 
-	connection: 'someMysqlServer',
-	migrate: 'alter',
-	autoPK: true,
-	autoCreatedAt: true,
-	autoUpdatedAt: true,
-	attributes: {
-		name: {
-		  type: 'string',
-		  columnName: 'name'
-		},
-		vehicle: {
-			collection : 'vehicle',
-			via :'manufacturer'
-		},
-		modelName: {
-			collection : 'modelName',
-			via :'manufacturer'
-		}
-	}
+  attributes: {
+
+    name: {
+  		type: Sequelize.STRING, 
+  		allowNull: false
+  	}
+  },
+  associations: function () {
+  	Manufacturer.hasMany(Model , {
+  		foreignKey : {
+  			name : 'ManufacturerId',
+  			as : 'models'
+  		}
+  	});
+
+  	Manufacturer.hasMany(Vehicle , {
+      foreignKey : {
+        name : 'ManufacturerId',
+        as : 'vehicles'
+      }
+    });
+  },
+
+  options: {
+    freezeTableName: false,
+    timestamps: true,
+    paranoid: true,
+    tableName: 'manufacturers',
+    classMethods: {},
+    instanceMethods: {},
+    hooks: {}
+  }
 };
 

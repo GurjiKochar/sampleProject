@@ -109,17 +109,18 @@ angular.module('SellVehicleModule').controller('SellVehicleController', ['$scope
 		})
 	}
 
-}]).directive('file', function () {
-	    return {
-	        scope: {
-	            file: '='
-	        },
-	        link: function (scope, el, attrs) {
-	            el.bind('change', function (event) {
-	                var file = event.target.files[0];
-	                scope.file = file ? file : undefined;
-	                scope.$apply();
-	            });
-	        }
-	    };
-	});;
+}]).directive('fileModel', ['$parse', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.fileModel);
+            var modelSetter = model.assign;
+            
+            element.bind('change', function(){
+                scope.$apply(function(){
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
+}]);

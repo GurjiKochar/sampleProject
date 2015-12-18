@@ -1,7 +1,7 @@
 /**
  * UserController
  *
- * @description :: Server-side logic for managing users
+ * @description :: Server-side logic for managing Users
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
@@ -14,11 +14,8 @@ module.exports = {
     // Try to look up user using the provided email address
     User.findOne({
       email: req.param('email')
-    }, function foundUser(err, user) {
-      if (err) {
-        console.log(err);
-        return res.negotiate(err);
-      }
+    }).then(function foundUser(user) {
+      
       if (!user) return res.notFound();
 
       // Compare password attempt from the form params to the encrypted password
@@ -43,24 +40,27 @@ module.exports = {
 
           // Store user id in the user session
           req.session.me = user.id;
-          console.log(req.session.me);
 
           // All done- let the client know that everything worked.
           return res.redirect('/');
         }
       });
+    }).catch(function(err) {
+      if (err) {
+        console.log(err);
+        return res.negotiate(err);
+      }
     });
 
   },
-
 
   /**
    * `UserController.logout()`
    */
   logout: function (req, res) {
-    console.log('inside logout');
-    UserService.logout({ id : req.session.me }, function foundUser(err, user) {
-      if (err) return res.negotiate(err);
+
+    UserService.logout({ id : req.session.me }, function foundUser(user) {
+      
 
       // If session refers to a user who no longer exists, still allow logout.
       if (!user) {
@@ -74,9 +74,10 @@ module.exports = {
       // Either send a 200 OK or redirect to the home page
       return res.redirect('/');
 
+    }, function (err) {
+      if (err) return res.negotiate(err);
     });
   },
-
 
   /**
    * `UserController.signup()`
@@ -89,7 +90,22 @@ module.exports = {
       email: req.param('email'),
       mobileNumber: req.param('mobileNumber'),
       password: req.param('password')
-    }, function (err, user) {
+    }, function (user) {
+      
+      // Go ahead and log this user in as well.
+      // We do this by "remembering" the user in the session.
+      // Subsequent requests from this user agent will have `req.session.me` set.
+      req.session.me = user.id;
+
+      // If this is not an HTML-wanting browser, e.g. AJAX/sockets/cURL/etc.,
+      // send a 200 response letting the user agent know the signup was successful.
+      if (req.wantsJSON) {
+        return res.ok('Signup successful!');
+      }
+
+      // Otherwise if this is an HTML-wanting browser, redirect to /welcome.
+      return res.redirect('/');
+    }, function(err) {
       // res.negotiate() will determine if this is a validation error
       // or some kind of unexpected server error, then call `res.badRequest()`
       // or `res.serverError()` accordingly.
@@ -108,20 +124,6 @@ module.exports = {
         // Otherwise, send back something reasonable as our error response.
         return res.negotiate(err);
       }
-
-      // Go ahead and log this user in as well.
-      // We do this by "remembering" the user in the session.
-      // Subsequent requests from this user agent will have `req.session.me` set.
-      req.session.me = user.id;
-
-      // If this is not an HTML-wanting browser, e.g. AJAX/sockets/cURL/etc.,
-      // send a 200 response letting the user agent know the signup was successful.
-      if (req.wantsJSON) {
-        return res.ok('Signup successful!');
-      }
-
-      // Otherwise if this is an HTML-wanting browser, redirect to /welcome.
-      return res.redirect('/');
     });
   }
 };

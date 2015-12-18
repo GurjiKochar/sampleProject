@@ -7,69 +7,79 @@
 
 module.exports = {
 
-	connection: 'someMysqlServer',
-	migrate: 'alter',
-	autoPK: true,
-	autoCreatedAt: true,
-	autoUpdatedAt: true,
-	attributes: {
-		minPrice: {
-		    type: 'float'
+  attributes: {
+
+  		minPrice: {
+		    type: Sequelize.FLOAT
 		},
 		maxPrice: {
-		    type: 'float'
+		    type: Sequelize.FLOAT
 		},
 		yearOfManufacture:{
-			type: 'string'
+			type: Sequelize.INTEGER
 		},
 		kmsDriven: {
-			type : 'string'
+			type : Sequelize.INTEGER
 		},
 		regestrationNumber : {
-			type : 'string'
+			type : Sequelize.STRING
 		},
 		tyreCondition : {
-			type : 'string'
+			type : Sequelize.STRING
 		},
 		insurance: {
-			type : 'string'
+			type : Sequelize.STRING
 		},
 		rc_status : {
-			type : 'string'
-		},
-		listedBy : {
-			type : 'string',
-			enum: ['Dealer', 'Individual']
+			type : Sequelize.STRING
 		},
 		isSponsoredListing : {
-			type : 'boolean'
-		},
-		user: {
-			model: 'user',
-			columnName: 'user_id',
-			required: true
-		},
-		manufacturer: {
-			model: 'manufacturer',
-			columnName: 'manufacturer_id',
-			required: true
-		},
-		bodyType: {
-			model: 'bodyType',
-			columnName: 'bodyType_id',
-			required: true
-		},
-		modelName: {
-			model: 'modelName',
-			columnName: 'modelName_id',
-			required: true
-		},
-		cities: {
-			model: 'masterCities',
-			columnName: 'city_id',
-			required: true
+			type : Sequelize.BOOLEAN
 		}
-
-	}
+  },
+  associations: function () {
+  	Vehicle.belongsTo(User ,{
+  		foreignKey : {
+  			name : 'UserId',
+  			as : 'users'
+  		}
+  	});
+  	Vehicle.belongsTo(MasterCities ,{
+  		foreignKey : {
+  			name : 'MasterCitiesId',
+  			as : 'cities'
+  		}
+  	});
+  	Vehicle.belongsTo(Manufacturer ,{
+  		foreignKey : {
+  			name : 'ManufacturerId',
+  			as : 'manufacturers'
+  		}
+  	});
+  	Vehicle.belongsTo(Model ,{
+  		foreignKey : {
+  			name : 'ModelId',
+  			as : 'models'
+  		}
+  	});
+  	Vehicle.belongsTo(BodyType ,{
+  		foreignKey : {
+  			name : 'BodyTypeId',
+  			as : 'bodyTypes'
+  		}
+  	});
+  },
+  options: {
+    freezeTableName: false,
+    timestamps: true,
+    paranoid: true,
+    tableName: 'vehicle',
+    classMethods: {},
+    instanceMethods: {},
+    hooks: {}
+  }
 };
+
+
+sequelize.sync();
 
