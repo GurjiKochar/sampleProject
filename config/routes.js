@@ -32,7 +32,6 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': { view: 'homepage' },
   'get /login': { view: 'User/login' },
   'get /signup': { view: 'User/signup' },
   'post /login': 'UserController.login',
@@ -64,5 +63,6 @@ module.exports.routes = {
     'get /api/manufacturer/all': 'ManufacturerController.findAll',
     'get /api/manufacturer/modelnames/:man_id' : 'ModelNameController.findByManufacturerId',
     'get /api/bodytype/all' : 'BodyTypeController.findAll',
-    'get /api/cities/all' : 'MasterCitiesController.findAll'
+    'get /api/cities/all' : 'MasterCitiesController.findAll',
+    '/': { view: 'layout' }
 };
