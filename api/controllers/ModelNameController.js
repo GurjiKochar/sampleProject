@@ -2,13 +2,12 @@ module.exports = {
 
     findByManufacturerId: function(req, res) {
     var man_id = req.param('man_id');
-    ModelName.find({ 'manufacturer_id' : man_id}).exec(function (err, models) {
-      if (err) {
-        console.log(err);
-        res.send(400);
-      } else {
-        res.send(models);
-      }
+    ModelName.find({ 'ManufacturerId' : man_id}).then(function (models) {
+
+        res.json(models);
+
+    }).catch(function(err) {
+      res.send(400);
     });
   }
 };

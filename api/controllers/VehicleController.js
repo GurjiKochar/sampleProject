@@ -143,10 +143,10 @@ module.exports = {
                 where.ModelId = req.query.modelId ;
             }
             if (req.query.cityId) {
-                where.MasterCitiesId = req.query.cityId ;
+                where.MasterCitiesId = JSON.parse(req.query.cityId) ;
             }
             if (req.query.locationType == 'city') {
-                var location = StringService.capitalizeFirstLetter(req.query.city);
+                var location = JSON.parse(req.query.city);
                 locationFilter = { model: MasterCities, where: {name : location} ,attributes:['name'] , include : [{model : MasterStates, attributes:['name'] }]};
             } else if (req.query.locationType == 'state') {
                 var location = StringService.capitalizeFirstLetter(req.query.state);
@@ -179,6 +179,38 @@ module.exports = {
             }).catch(function(err) {
                 if (err) return next(err);
             });
+        }
+    },
+
+
+    // a FIND action
+    findForUser: function(req, res, next) {
+
+        var id = req.session.me;
+        if (id) {
+
+            var userFilter = {model : User , where: {id : id} , attributes: ['name','mobileNumber'] }
+            var locationFilter = { model: MasterCities , attributes:['name'] , include : [{model : MasterStates, attributes:['name'] }]};
+            var makeFilter = {model :Manufacturer, attributes:['name']};
+            var modelFilter = {model : Model , attributes:['name']};
+            var bodyTypeFilter = {model : BodyType , attributes:['name']};
+
+        
+            Vehicle.findAndCountAll({
+                include: [userFilter, locationFilter, makeFilter, modelFilter, bodyTypeFilter],
+                attributes: {exclude : ['UserId','updatedAt','deletedAt']}
+            }).then(function(vehicle) {
+
+                if (vehicle === undefined) return res.notFound();
+
+                res.json(vehicle);
+
+            }).catch(function(err) {
+
+                if (err) return next(err);
+
+            });
+
         }
     }
 };
