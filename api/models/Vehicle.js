@@ -68,6 +68,12 @@ module.exports = {
   			as : 'bodyTypes'
   		}
   	});
+  	Vehicle.hasMany(Quotes , {
+      foreignKey : {
+        name : 'VehicleId',
+        as : 'quotes'
+      }
+    });
   },
   options: {
     freezeTableName: false,

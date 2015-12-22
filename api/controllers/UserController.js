@@ -85,6 +85,9 @@ module.exports = {
   signup: function (req, res) {
 
     // Attempt to signup a user using the provided parameters
+    console.log(req.session.otp);
+    console.log(req.param('otp'));
+    if (req.param('otp') == req.session.otp) {
     UserService.signup({
       name: req.param('name'),
       email: req.param('email'),
@@ -120,6 +123,42 @@ module.exports = {
           && err.invalidAttributes.email[0].rule === 'unique') {
           return res.emailAddressInUse();
         }
+
+        // Otherwise, send back something reasonable as our error response.
+        return res.negotiate(err);
+      }
+    });
+    } else {
+      res.badRequest('OTP did not match');
+    }
+  },
+
+  sendOtp: function (req, res) {
+
+    // Attempt to signup a user using the provided parameters
+    User.find({where :
+      {mobileNumber: req.param('mobileNumber')}
+    }).then( function (user) {
+      
+      // Go ahead and log this user in as well.
+      // We do this by "remembering" the user in the session.
+      // Subsequent requests from this user agent will have `req.session.me` set.
+      console.log(user);
+      if (user == null) {
+        req.session.user = req.params.all();
+        req.session.otp = 123456;
+        return res.ok('Verify Phone number');
+      } else {
+        return res.badRequest('Phone number already in use')
+      }
+
+    }).catch( function(err) {
+      // res.negotiate() will determine if this is a validation error
+      // or some kind of unexpected server error, then call `res.badRequest()`
+      // or `res.serverError()` accordingly.
+      if (err) {
+
+        console.log("err: ", err);
 
         // Otherwise, send back something reasonable as our error response.
         return res.negotiate(err);

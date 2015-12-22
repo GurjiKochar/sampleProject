@@ -49,12 +49,15 @@ module.exports.routes = {
 
     'post /login': 'UserController.login',
     'post /signup': 'UserController.signup',
+    'post /sendOtp': 'UserController.sendOtp',
     'get /logout': 'UserController.logout',
 
     'get /api/vehicle/search/:id?': 'VehicleController.find',
     'POST /vehicle': 'VehicleController.create',
     'put /vehicle/:id': 'VehicleController.update',
     'delete /vehicle/:id?': 'VehicleController.destroy',
+
+    'get /api/vehicle/user': 'VehicleController.findForUser',
 
 
     'get /api/cities/all' : 'MasterCitiesController.findAll',
@@ -68,5 +71,7 @@ module.exports.routes = {
     'get /api/manufacturer/all': 'ManufacturerController.findAll',
     'get /api/manufacturer/modelnames/:man_id' : 'ModelNameController.findByManufacturerId',
     'get /api/bodytype/all' : 'BodyTypeController.findAll',
-    'get /api/cities/all' : 'MasterCitiesController.findAll'
+    'get /api/cities/all' : 'MasterCitiesController.findAll',
+
+    'post /api/vehicle/bid': 'QuotesController.create'
 };

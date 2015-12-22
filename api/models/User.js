@@ -38,6 +38,13 @@ module.exports = {
         as : 'vehicles'
       }
     });
+
+    User.hasMany(Quotes , {
+      foreignKey : {
+        name : 'UserId',
+        as : 'quotes'
+      }
+    });
   },
   options: {
     freezeTableName: false,
