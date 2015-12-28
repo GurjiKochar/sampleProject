@@ -1,10 +1,13 @@
-angular.module('app',['ngRoute','app.VehicleListingController']).config(['$routeProvider', function($routeProvider){
+angular.module('app',['ngRoute',
+	'app.VehicleListingController',
+	'app.vehicleServices']
+	).config(['$routeProvider', function($routeProvider){
 		$routeProvider
 			.when('/',{
 				templateUrl: 'js/public/homepage/home.html'
 			})
 			.when('/used-trucks/:city/:brand/:modal',{
-				templateUrl: 'results/vehicle.html',
+				templateUrl: 'js/public/homepage/home.html',
 				controller: 'VehicleListingController as listingController'
 			})
 	}]);
