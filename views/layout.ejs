@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
   <head>
     <title>New Sails App</title>
 
@@ -30,13 +30,12 @@
 
     <!--STYLES-->
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="/bower_components/angular-toastr/dist/angular-toastr.min.css">
     <link rel="stylesheet" href="/styles/importer.css">
     <!--STYLES END-->
   </head>
 
   <body>
-    <%- body %>
+    <div ng-view></div>
 
 
 
@@ -97,9 +96,9 @@
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
     <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-    <script src="/bower_components/angular-toastr/dist/angular-toastr.min.js"></script>
-    <script src="/bower_components/angularjs-compare-to-directive/compareto.js"></script>
     <script src="/js/stickUp.min.js"></script>
+    <script src="/bower_components/requirejs/require.js"></script>
+    <script src="/js/public/app.js"></script>
     <script src="/js/public/signup/SignupModule.js"></script>
     <script src="/js/public/vehicle/SellVehicleModule.js"></script>
     <script src="/js/public/homepage/HomepageModule.js"></script>
@@ -108,6 +107,7 @@
     <script src="/js/public/results/searchResultsController.js"></script>
     <script src="/js/public/signup/SignupController.js"></script>
     <script src="/js/public/vehicle/SellVehicleController.js"></script>
+    <script src="/js/public/vehicle/VehicleListingController.js"></script>
     <!--SCRIPTS END-->
   </body>
 </html>
