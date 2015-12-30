@@ -1,13 +1,21 @@
 module.exports = {
 
     // a FIND action
+    
     findAll: function (req, res) {
-        BodyType.find().exec(function (err, bodyType) {
-          if (err) {
+
+        BodyType.find().then(function (bodyType) {
+            res.json(bodyType);
+        }).catch(function(err) {
             res.send(400);
-          } else {
-            res.send(bodyType);
-          }
+        });
+    },
+    find : function(req, res) {
+      BodyType.findOne({where:{id : req.param('id')}}
+        ).then(function(bodyType) {
+          res.json(bodyType);
+        }).catch(function(err) {
+          res.send(400);
         });
     }
 };

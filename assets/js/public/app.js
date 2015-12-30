@@ -4,10 +4,10 @@ angular.module('app',['ngRoute',
 	).config(['$routeProvider', function($routeProvider){
 		$routeProvider
 			.when('/',{
-				templateUrl: 'js/public/homepage/home.html'
+				templateUrl: 'templates/homepage/home.html'
 			})
 			.when('/used-trucks/:city/:brand/:modal',{
-				templateUrl: 'js/public/homepage/home.html',
+				templateUrl: 'templates/vehicleListing.html',
 				controller: 'VehicleListingController as listingController'
 			})
 	}]);

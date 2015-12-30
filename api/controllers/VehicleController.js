@@ -1,95 +1,64 @@
 /**
  * VehicleController
  *
- * @description :: Server-side logic for managing vehicles
+ * @description :: Server-side logic for managing Vehicles
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
 module.exports = {
-	// a CREATE action  
-	create: function(req, res, next) {
-        var uploadFile = req.file('uploadFile');
-        console.log(uploadFile);
-
-        var updfiles= uploadFile.upload({ dirname: '../../assets/ListingImages'}, function onUploadComplete (err, files) {
-                                                                                
-            if (err) return res.serverError(err);                               
-            //  IF ERROR Return and send 500 error with error
-            
-            console.log(files);
-
-            return files;
-
-        });
-	    console.log(updfiles);
+    // a CREATE action  
+    create: function(req, res, next) {
+        
         var params = req.params.all();
 
         var v = {};
 
-        v.user = 1;
-        v.manufacturer = params.manufacturerId;
-        v.bodyType = params.bodyTypeId;
-        v.modelName =params.model;
-        v.cities =params.cityId;
-        v.minPrice = params.minPrice;
+        v.UserId = 1;
+        v.ManufacturerId = params.manufacturerId;
+        v.BodyTypeId = params.bodyTypeId;
+        v.ModelId =params.modelId;
+        v.MasterCitiesId =params.cityId;
         v.maxPrice =params.maxPrice;
         v.yearOfManufacture = params.yearOfManufacture;
+        v.isSponsoredListing = params.isSponsoredListing;
+        console.log(v);
+        Vehicle.create(v).then(function(vehicle) {
 
-	    Vehicle.create(v, function(err, vehicle) {
+            res.status(201);
 
-	        if (err) console.log(err); return next(err);
+            res.json(vehicle);
 
-	        res.status(201);
+        }).catch(function(err) {
+            if (err) console.log(err); return next(err);
+        });
+    },
 
-	        res.json(vehicle);
-
-	    });
-	},
-
-
-	// an UPDATE action
+    // an UPDATE action
     update: function(req, res, next) {
 
         var criteria = {};
 
         criteria = _.merge({}, req.params.all(), req.body);
-
+        console.log(criteria);
         var id = req.param('id');
 
         if (!id) {
             return res.badRequest('No id provided.');
         }
 
-        Vehicle.update(id, criteria, function(err, vehicle) {
+        var where = { where : {id : req.param('id')}};
 
-            if (vehicle.length === 0) return res.notFound();
+        Vehicle.update(criteria, where).then(function(rows) {
 
+            if (rows.length === 0) return res.notFound();
+            return res.status(201);
+
+
+        }).catch(function(err) {
             if (err) return next(err);
-
-            res.json(vehicle);
-
         });
 
     },
-
-    upload: function(req, res, next) {
-
-    var uploadFile = req.file('uploadFile');
-        console.log(uploadFile);
-
-        uploadFile.upload({ dirname: '../../assets/ListingImages'},function onUploadComplete (err, files) {              
-        //  Files will be uploaded to .tmp/uploads
-                                                                                
-            if (err) return res.serverError(err);                               
-            //  IF ERROR Return and send 500 error with error
-            
-            console.log(files);
-            res.json({status:200,file:files});
-        });
-
-},
-
-
 
     // a DESTROY action
     destroy: function(req, res, next) {
@@ -100,61 +69,145 @@ module.exports = {
             return res.badRequest('No id provided.');
         }
 
-        Vehicle.findOne(id).done(function(err, result) {
-            if (err) return res.serverError(err);
+        Vehicle.findById(id).then(function(result) {
+            
 
             if (!result) return res.notFound();
 
-            Vehicle.destroy(id, function(err) {
-
-                if (err) return next(err);
+            Vehicle.destroy(id).then(function(err) {
 
                 return res.json(result);
+
+            }).catch(function(err) {
+                if (err) return next(err);
             });
 
+        }).catch(function(err) {
+            if (err) return res.serverError(err);
         });
     },
+
 
     // a FIND action
     find: function(req, res, next) {
 
         var id = req.param('id');
-        console.log(req.url);
+        var where = {};
+        var locationFilter = { model: MasterCities , attributes:['name'] , include : [{model : MasterStates, attributes:['name'] }]};
+        var makeFilter = {model :Manufacturer, attributes:['name']};
+        var modelFilter = {model : Model , attributes:['name']};
+        var bodyTypeFilter = {model : BodyType , attributes:['name']};
 
         if (id) {
-
-            Vehicle.findOne(id, function(err, vehicle) {
+            where.id = id;
+            Vehicle.findAndCountAll({
+                where : where,
+                include: [locationFilter, makeFilter , modelFilter,bodyTypeFilter],
+                attributes: {exclude : ['UserId','updatedAt','deletedAt']}
+            }).then(function(vehicle) {
 
                 if (vehicle === undefined) return res.notFound();
 
-                if (err) return next(err);
-
                 res.json(vehicle);
+
+            }).catch(function(err) {
+
+                if (err) return next(err);
 
             });
 
         } else {
 
-            var where = req.param('where');
-            if (_.isString(where)) {
-                where = JSON.parse(where);
+            if (req.query.yearOfManufacture) {
+                where.yearOfManufacture = {$gte: req.query.yearOfManufacture} ;
             }
 
-            var options = {
-                limit: req.param('limit') || undefined,
-                skip: req.param('skip') || undefined,
-                sort: req.param('sort') || undefined,
-                where: where || undefined
-            };
+            if (req.query.maxPrice) {
+                where.maxPrice = {$lte: req.query.maxPrice} ;
+            }
+            if (req.query.minPrice) {
+                where.maxPrice = {$gte: req.query.minPrice} ;
+            }
 
-            Vehicle.find(options).populate('cities').populate('manufacturer').populate('modelName').exec( function(err, vehicle) {
+            if (req.query.maxPrice && req.query.minPrice) {
+                where.maxPrice = {$and: [{$lte: req.query.maxPrice},{$gte: req.query.minPrice}]};
+            }
+
+            if (req.query.bdTypeId) {
+                where.BodyTypeId = req.query.bdTypeId ;
+            }
+            if (req.query.makeId) {
+                where.ManufacturerId = req.query.makeId ;
+            }
+            if (req.query.modelId) {
+                where.ModelId = req.query.modelId ;
+            }
+            if (req.query.cityId) {
+                where.MasterCitiesId = JSON.parse(req.query.cityId) ;
+            }
+            if (req.query.locationType == 'city') {
+                var location = JSON.parse(req.query.city);
+                locationFilter = { model: MasterCities, where: {name : location} ,attributes:['name'] , include : [{model : MasterStates, attributes:['name'] }]};
+            } else if (req.query.locationType == 'state') {
+                var location = StringService.capitalizeFirstLetter(req.query.state);
+                locationFilter = { model: MasterCities ,attributes:['name'] , include : [{model : MasterStates ,where: {name : location}, attributes:['name'] }]};
+            }
+            
+            if (req.query.make) {
+                makeFilter = {model :Manufacturer , where: {name : req.query.make} ,attributes:['name']};
+            }
+
+            if (req.query.model) {
+                modelFilter = {model :Model , where: {name : req.query.model} ,attributes:['name']};
+            }
+
+            if (req.query.bodyType) {
+                 var bdType = StringService.capitalizeFirstLetter(req.query.bodyType);
+                 bodyTypeFilter = {model :BodyType , where: {name : bdType} ,attributes:['name']};
+            }
+
+            Vehicle.findAndCountAll({
+                where : where,
+                include: [locationFilter, makeFilter , modelFilter,bodyTypeFilter],
+                attributes: {exclude : ['UserId','updatedAt','deletedAt']}
+            }).then( function(vehicle) {
 
                 if (vehicle === undefined) return res.notFound();
 
-                if (err) return next(err);
+                res.json(vehicle);
 
-                console.log({json:JSON.stringify(vehicle)});
-                return res.view('Results/searchResults',{json:JSON.stringify(vehicle)});
+            }).catch(function(err) {
+                if (err) return next(err);
+            });
+        }
+    },
+
+
+    // a FIND action
+    findForUser: function(req, res, next) {
+
+        var id = req.session.me;
+        if (id) {
+
+            var userFilter = {model : User , where: {id : id} , attributes: ['name','mobileNumber'] }
+            var locationFilter = { model: MasterCities , attributes:['name'] , include : [{model : MasterStates, attributes:['name'] }]};
+            var makeFilter = {model :Manufacturer, attributes:['name']};
+            var modelFilter = {model : Model , attributes:['name']};
+            var bodyTypeFilter = {model : BodyType , attributes:['name']};
+
+        
+            Vehicle.findAndCountAll({
+                include: [userFilter, locationFilter, makeFilter, modelFilter, bodyTypeFilter],
+                attributes: {exclude : ['UserId','updatedAt','deletedAt']}
+            }).then(function(vehicle) {
+
+                if (vehicle === undefined) return res.notFound();
+
+                res.json(vehicle);
+
+            }).catch(function(err) {
+
+                if (err) return next(err);
 
             });
 

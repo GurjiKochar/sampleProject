@@ -7,55 +7,54 @@
 
 module.exports = {
 
-  connection: 'someMysqlServer',
-  migrate: 'alter',
-  autoPK: true,
-  autoCreatedAt: true,
-  autoUpdatedAt: true,
-  tableName: 'users',
   attributes: {
     name: {
-      type: 'string',
-      columnName: 'full_name',
-      required: true
-    },
-    email: {
-      type: 'email',
-      unique: true,
-      columnName: 'email',
-      required: true
+      type: Sequelize.STRING, 
+      allowNull: false
     },
     mobileNumber: {
-      type: 'string',
+      type: Sequelize.STRING,
       unique: true,
-      required: true,
-      columnName: 'mobile_number'
+      allowNull: false
+    },
+    email: {
+      type: Sequelize.STRING,
+      unique: true,
+      allowNull: false
     },
     password: {
-      type: 'string',
-      columnName: 'password',
-      required: true
+      type: Sequelize.STRING,
+      allowNull: false
     },
-    // The timestamp when the the user last logged in
-    // (i.e. sent a username and password to the server)
     lastLoggedIn: {
-      type: 'date',
-      required: true,
-      defaultsTo: new Date(0)
-    },
+      type: Sequelize.DATE,
+      defaultValue: Sequelize.NOW
+    } 
+  },
+  associations: function () {
+    User.hasMany(Vehicle , {
+      foreignKey : {
+        name : 'UserId',
+        as : 'vehicles'
+      }
+    });
 
-    // url for gravatar
-    gravatarUrl: {
-      type: 'string'
-    },
-
-  	vehicle: {
-  		collection : 'vehicle',
-  		via :'user'
-  	}
+    User.hasMany(Quotes , {
+      foreignKey : {
+        name : 'UserId',
+        as : 'quotes'
+      }
+    });
+  },
+  options: {
+    freezeTableName: false,
+    timestamps: true,
+    paranoid: true,
+    tableName: 'user',
+    classMethods: {},
+    instanceMethods: {},
+    hooks: {}
   }
-
-
-
 };
+
 

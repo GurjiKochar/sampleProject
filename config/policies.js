@@ -24,7 +24,16 @@ module.exports.policies = {
   UserController: {
     '*': 'sessionAuth',
     login: true,
-    signup: true
+    signup: true,
+    sendOtp:true
+  },
+
+  VehicleController: {
+    findForUser : 'sessionAuth'
+  },
+
+  QuotesController: {
+    create : 'sessionAuth'
   }
   /***************************************************************************
   *                                                                          *

@@ -7,20 +7,30 @@
 
 module.exports = {
 
-	connection: 'someMysqlServer',
-	migrate: 'alter',
-	autoPK: true,
-	autoCreatedAt: true,
-	autoUpdatedAt: true,
-	attributes: {
-		name: {
-		  type: 'string',
-		  columnName: 'name'
-		},
-		vehicle: {
-			collection : 'vehicle',
-			via :'bodyType'
-		}
-	}
+  attributes: {
+
+    name: {
+  		type: Sequelize.STRING, 
+  		allowNull: false
+  	}
+  },
+  associations: function () {
+  	BodyType.hasMany(Vehicle , {
+  		foreignKey : {
+  			name : 'BodyTypeId',
+  			as : 'vehicles'
+  		}
+  	});
+  },
+
+  options: {
+    freezeTableName: false,
+    timestamps: true,
+    paranoid: true,
+    tableName: 'body_types',
+    classMethods: {},
+    instanceMethods: {},
+    hooks: {}
+  }
 };
 

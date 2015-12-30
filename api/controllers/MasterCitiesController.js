@@ -1,13 +1,28 @@
-module.exports = {
-    // Find All action
+/**
+ * MasterCitiesController
+ *
+ * @description :: Server-side logic for managing Mastercities
+ * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
+ */
 
-    findAll: function (req, res) {
-        MasterCities.find().exec(function (err, cities) {
-          if (err) {
+module.exports = {
+  
+  findAll: function (req, res) {
+        MasterCities.find().then(function (cities) {
+            res.json(cities);
+          }).catch(function (err) {
+            console.log(err);
             res.send(400);
-          } else {
-            res.send(cities);
-          }
         });
-    }
+    },
+  find : function(req, res) {
+    MasterCities.findOne({where:{id : req.param('id')}}
+      ).then(function(city) {
+        res.json(city);
+      }).catch(function(err) {
+        console.log(err);
+        res.send(400);
+      });
+  }
 };
+

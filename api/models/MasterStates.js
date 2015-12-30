@@ -1,5 +1,5 @@
 /**
-* MasterCities.js
+* MasterStates.js
 *
 * @description :: TODO: You might write a short summary of how this model works and what it represents here.
 * @docs        :: http://sailsjs.org/#!documentation/models
@@ -15,26 +15,25 @@ module.exports = {
   	}
   },
   associations: function () {
-  	MasterCities.belongsTo(MasterStates,{
+  	MasterStates.hasMany(MasterCities , {
   		foreignKey : {
   			name : 'MasterStatesId',
-  			as : 'states'
+  			as : 'cities'
   		}
   	});
-
-  	MasterCities.hasMany(Vehicle , {
-      foreignKey : {
-        name : 'MasterCitiesId',
-        as : 'vehicles'
-      }
-    });
+  	MasterStates.belongsTo(MasterCountries,{
+  		foreignKey : {
+  			name : 'MasterCountriesId',
+  			as : 'countries'
+  		}
+  	});
   },
 
   options: {
     freezeTableName: false,
     timestamps: true,
     paranoid: true,
-    tableName: 'master_cities',
+    tableName: 'master_states',
     classMethods: {},
     instanceMethods: {},
     hooks: {}
