@@ -44,7 +44,7 @@ module.exports.connections = {
     host: 'localhost',
     user: 'root',
     port: 3306,
-    password: '',
+    password: 'root',
     dialect: 'mysql',
     database: 'sailsjs-sequelize',
     options: {
@@ -52,7 +52,7 @@ module.exports.connections = {
       dialect: 'mysql',
       user: 'root',
       port: 3306,
-      password : '',
+      password : 'root',
       pool: {
         max: 5,
         min: 0,

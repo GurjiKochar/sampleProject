@@ -1,10 +1,9 @@
 var vehicleController = angular.module('app.VehicleListingController',[]);
-function VehicleListingController(VehicleListingServices){
+function VehicleListingController($scope,$routeParams, VehicleListingServices){
 	VehicleListingServices.getVehicles().success(function(response){
-		console.log(response);
+		$scope.vehicles = response.rows;
 	});
-	console.log('controller created');
 }
-VehicleListingController.$inject = ['VehicleListingServices'];
+VehicleListingController.$inject = ['$scope','$routeParams','VehicleListingServices'];
 
 vehicleController.controller('VehicleListingController', VehicleListingController);
