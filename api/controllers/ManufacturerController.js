@@ -3,7 +3,7 @@ module.exports = {
 
     findAll: function (req, res) {
 
-        Manufacturer.find().then(function (manufacturer) {
+        Manufacturer.findAll().then(function (manufacturer) {
             res.json(manufacturer);
         }).catch(function(err) {
             res.send(400);
