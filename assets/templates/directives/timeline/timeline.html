@@ -1,0 +1,46 @@
+<div ng-repeat="vehicle in vehicles" class="col-sm-6 col-lg-6 col-md-6 listing">
+                    <div class="thumbnail">
+                    
+                        <uib-carousel interval="myInterval" no-wrap="noWrapSlides">
+                          <uib-slide  active="active">
+                            <img ng-src="http://placehold.it/320x150" alt="" style="margin:auto;">
+                            <div class="carousel-caption">
+                              <h4>Slide </h4>
+                              <p>dtyfguhkjgjh</p>
+                            </div>
+                            </uib-slide>
+                            <uib-slide>
+                            <img ng-src="http://placehold.it/320x150" alt="" style="margin:auto;">
+                            <div class="carousel-caption">
+                              <h4>Slide 2 </h4>
+                              <p>qwretryuyu</p>
+                            </div>
+                            </uib-slide>
+                            <uib-slide>
+                            <img ng-src="http://placehold.it/320x150" alt="" style="margin:auto;">
+                            <div class="carousel-caption">
+                              <h4>Slide 3</h4>
+                              <p>zxvcbvnb</p>
+                            </div>
+                          </uib-slide>
+                        </uib-carousel>
+                      
+                        
+                        <div class="caption">
+                            <h4 class="pull-right">{{vehicle.Model.name}}</h4>
+                            <h4><a href="#">{{vehicle.Model.name}}</a>
+                            </h4>
+                            <p>{{vehicle.MasterCity.name}}<a target="_blank" href="http://www.bootsnipp.com">{{vehicle.yearOfManufacture}} </a>.</p>
+                        </div>
+                        <div class="ratings">
+                            <p class="pull-right">15 reviews</p>
+                            <p>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>

@@ -1,5 +1,6 @@
 angular.module('app',['ngRoute',
 	'app.VehicleListingController',
+	'app.AdminPanelController',
 	'app.vehicleServices']
 	).config(['$routeProvider', function($routeProvider){
 		$routeProvider
@@ -7,7 +8,11 @@ angular.module('app',['ngRoute',
 				templateUrl: 'js/public/homepage/home.html'
 			})
 			.when('/used-trucks/:city/:brand/:modal',{
-				templateUrl: 'js/public/homepage/home.html',
+				templateUrl: 'templates/vehicleListing.html',
 				controller: 'VehicleListingController as listingController'
+			})
+			.when('/admin-panel',{
+				templateUrl: 'templates/adminPanel.html',
+				controller: 'AdminPanelController as adminController'
 			})
 	}]);
