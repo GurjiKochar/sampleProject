@@ -8,7 +8,7 @@
 module.exports = {
   
   findAll: function (req, res) {
-        MasterCities.find().then(function (cities) {
+        MasterCities.findAll().then(function (cities) {
             res.json(cities);
           }).catch(function (err) {
             console.log(err);

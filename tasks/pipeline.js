@@ -46,6 +46,8 @@ var jsFilesToInject = [
   // All of the rest of your client-side js files
   // will be injected here in no particular order.
   'js/public/app.js',
+  'js/public/services.js',
+  'js/public/controllers.js',
   'js/public/signup/SignupModule.js',
   '/js/public/vehicle/SellVehicleModule.js',
   '/js/public/homepage/HomepageModule.js',
