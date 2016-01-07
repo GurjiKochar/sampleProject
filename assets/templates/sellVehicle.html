@@ -1,43 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>New Sails App</title>
-
-    <!-- Viewport mobile tag for sensible mobile support -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    
-    <!--  
-        Stylesheets and Preprocessors
-        ==============================
-
-        You can always bring in CSS files manually with `<link>` tags, or asynchronously
-        using a solution like AMD (RequireJS).  Or, if you like, you can take advantage 
-        of Sails' conventional asset pipeline (boilerplate Gruntfile).
-
-        By default, stylesheets from your `assets/styles` folder are included
-        here automatically (between STYLES and STYLES END). Both CSS (.css) and LESS (.less)
-        are supported. In production, your styles will be minified and concatenated into
-        a single file.
-        
-        To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
-        For example, here are a few things you could do:
-            
-            + Change the order of your CSS files
-            + Import stylesheets from other directories
-            + Use a different or additional preprocessor, like SASS, SCSS or Stylus
-    -->
-
-    <!--STYLES-->
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="/styles/importer.css">
-    <!--STYLES END-->
-  </head>
-
-  
-  <body ng-app="SellVehicleModule" ng-controller="SellVehicleController" ng-cloak>
-
-        <div class="templatemo-top-bar" id="templatemo-top">
+<div class="templatemo-top-bar" id="templatemo-top">
             <div class="container">
                 <div class="subheader">
                     <div id="phone" class="pull-left">
@@ -284,29 +245,3 @@
       <input type="hidden" name="_csrf" value="<%= _csrf %>" />
 
     </form>
-
-    
-      <!--SCRIPTS-->
-      <script src="/js/dependencies/sails.io.js"></script>
-      <script src="/bower_components/jquery/dist/jquery.js"></script>
-      <script src="/bower_components/angular/angular.js"></script>
-      <script src="/bower_components/angular-route/angular-route.js"></script>
-      <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-      <script src="/bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
-      <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-      <script src="/js/stickUp.min.js"></script>
-      <script src="/js/public/app.js"></script>
-      <script src="/js/public/signup/SignupModule.js"></script>
-      <script src="/js/public/vehicle/SellVehicleModule.js"></script>
-      <script src="/js/public/homepage/HomepageModule.js"></script>
-      <script src="/js/public/results/searchResultsModule.js"></script>
-      <script src="/js/public/admin/AdminPanelController.js"></script>
-      <script src="/js/public/homepage/HomepageController.js"></script>
-      <script src="/js/public/results/searchResultsController.js"></script>
-      <script src="/js/public/services.js"></script>
-      <script src="/js/public/signup/SignupController.js"></script>
-      <script src="/js/public/vehicle/SellVehicleController.js"></script>
-      <script src="/js/public/vehicle/VehicleListingController.js"></script>
-      <!--SCRIPTS END-->
-  </body>
-</html>

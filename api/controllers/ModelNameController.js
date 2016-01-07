@@ -2,7 +2,7 @@ module.exports = {
 
     findByManufacturerId: function(req, res) {
     var man_id = req.param('man_id');
-    ModelName.find({ 'ManufacturerId' : man_id}).then(function (models) {
+    Model.findAll({where:{ 'ManufacturerId' : man_id}}).then(function (models) {
 
         res.json(models);
 

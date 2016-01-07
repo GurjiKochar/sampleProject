@@ -4,7 +4,7 @@ module.exports = {
     
     findAll: function (req, res) {
 
-        BodyType.find().then(function (bodyType) {
+        BodyType.findAll().then(function (bodyType) {
             res.json(bodyType);
         }).catch(function(err) {
             res.send(400);

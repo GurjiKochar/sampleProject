@@ -1,4 +1,15 @@
-angular.module('SellVehicleModule').controller('SellVehicleController', ['$scope', '$http', 'toastr', function($scope, $http, toastr){
+var vehicleController = angular.module('app.vehicleController',[]);
+function VehicleListingController($scope,$routeParams, VehicleListingServices){
+	VehicleListingServices.getVehicles().success(function(response){
+		$scope.vehicles = response.rows;
+	});
+}
+VehicleListingController.$inject = ['$scope','$routeParams','VehicleListingServices'];
+
+vehicleController.controller('VehicleListingController', VehicleListingController);
+
+
+function SellVehicleController($scope, $http){
 	// set-up loading state
 	$scope.sellVehicleForm = {
 		loading: false
@@ -8,32 +19,18 @@ angular.module('SellVehicleModule').controller('SellVehicleController', ['$scope
 	  method: 'GET',
 	  url: '/api/manufacturer/all'
 	}).then(function successCallback(response) {
-	    // this callback will be called asynchronously
-	    // when the response is available
-
-	    console.log(response);
 	    $scope.sellVehicleForm.manufacturer = response.data;
 	  }, function errorCallback(response) {
-	    // called asynchronously if an error occurs
-	    // or server returns response with an error status.
-	    console.log(response);
-	  });
+	});
 
 
 	$http({
 	  method: 'GET',
 	  url: '/api/bodytype/all'
 	}).then(function successCallback(response) {
-	    // this callback will be called asynchronously
-	    // when the response is available
-
-	    console.log(response);
 	    $scope.sellVehicleForm.bodyType = response.data;
-	  }, function errorCallback(response) {
-	    // called asynchronously if an error occurs
-	    // or server returns response with an error status.
-	    console.log(response);
-	  });
+	}, function errorCallback(response) {
+	});
 
 	
 	$http({
@@ -109,7 +106,11 @@ angular.module('SellVehicleModule').controller('SellVehicleController', ['$scope
 		})
 	}
 
-}]).directive('fileModel', ['$parse', function ($parse) {
+}
+
+SellVehicleController.$inject = ['$scope', '$http'];
+vehicleController.controller('SellVehicleController', SellVehicleController);
+vehicleController.directive('fileModel', ['$parse', function ($parse) {
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
