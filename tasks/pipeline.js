@@ -39,6 +39,7 @@ var jsFilesToInject = [
   '/bower_components/angular-toastr/dist/angular-toastr.min.js',
   '/bower_components/angularjs-compare-to-directive/compareto.js',
   '/js/stickUp.min.js',
+  '/bower_components/ng-file-upload/ng-file-upload.min.js',
 
   // Dependencies like jQuery, or Angular are brought in here
   'js/dependencies/**/*.js',

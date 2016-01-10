@@ -4,6 +4,9 @@
  * @description :: Server-side logic for managing Vehicles
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
+var path = require('path'),
+    fs = require('fs'),
+    _ = require('lodash');
 
 module.exports = {
     // a CREATE action  
@@ -57,6 +60,28 @@ module.exports = {
         }).catch(function(err) {
             if (err) return next(err);
         });
+
+    },
+
+    savePhotos: function(req, res, next) {
+        console.log("reached here");
+        var data = _.pick(req.body, 'type')
+        , uploadPath = path.normalize('./uploads/' + req.param('id'))
+        , file = req.files.file;
+        console.log(req.files);
+        var tempPath = req.files.file;
+            targetPath = path.resolve('/Users/prashantchaudhary/sampleProject/uploads/image.png');
+        if (true) {
+            fs.rename(file.path, targetPath, function(err) {
+                if (err) throw err;
+                console.log("Upload completed!");
+            });
+        } else {
+            fs.unlink(tempPath, function () {
+                if (err) throw err;
+                console.error("Only .png files are allowed!");
+            });
+        }
 
     },
 

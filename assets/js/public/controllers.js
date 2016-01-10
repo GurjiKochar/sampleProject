@@ -1,4 +1,4 @@
-var vehicleController = angular.module('app.vehicleController',[]);
+var vehicleController = angular.module('app.vehicleController',['ngFileUpload']);
 function VehicleListingController($scope,$routeParams, VehicleListingServices){
 	VehicleListingServices.getVehicles().success(function(response){
 		$scope.vehicles = response.rows;
@@ -9,7 +9,7 @@ VehicleListingController.$inject = ['$scope','$routeParams','VehicleListingServi
 vehicleController.controller('VehicleListingController', VehicleListingController);
 
 
-function SellVehicleController($scope, $http){
+function SellVehicleController($scope, $http, Upload){
 	// set-up loading state
 	$scope.sellVehicleForm = {
 		loading: false
@@ -69,11 +69,24 @@ function SellVehicleController($scope, $http){
 		
 	}
 
+	$scope.upload = function (files, vehicleId) {
+		var url = '/vehicle/' + vehicleId + "/photos";
+    if (files ) {
+        Upload.upload({url:url, data: {file: files}}).then(function(response){
+
+        }, function(response){
+
+        }, function(evt){
+
+        });
+    }
+  }
+
 	$scope.submitSellVehicleForm = function(){
 
 		// Set the loading state (i.e. show loading spinner)
 		$scope.sellVehicleForm.loading = true;
-
+		
 		// Submit request to Sails.
 		$http.post('/vehicle', {
 			manufacturerId: $scope.sellVehicleForm.manufacturerId,
@@ -85,8 +98,10 @@ function SellVehicleController($scope, $http){
 			cityId : $scope.sellVehicleForm.cityId,
 			uploadFile : $scope.file
 		})
-		.then(function onSuccess(sailsResponse){
-			window.location = '/';
+		.then(function onSuccess(response){
+			if ($scope.sellVehicleForm.photos) {
+	      $scope.upload($scope.sellVehicleForm.photos, response.data.id);
+	    }
 		})
 		.catch(function onError(sailsResponse){
 
@@ -108,7 +123,7 @@ function SellVehicleController($scope, $http){
 
 }
 
-SellVehicleController.$inject = ['$scope', '$http'];
+SellVehicleController.$inject = ['$scope', '$http', 'Upload'];
 vehicleController.controller('SellVehicleController', SellVehicleController);
 vehicleController.directive('fileModel', ['$parse', function ($parse) {
     return {
