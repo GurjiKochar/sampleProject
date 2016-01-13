@@ -20,7 +20,8 @@ module.exports = {
         v.MasterCitiesId =params.cityId;
         v.maxPrice =params.maxPrice;
         v.yearOfManufacture = params.yearOfManufacture;
-        v.isSponsoredListing = params.isSponsoredListing;
+        v.isSponsoredListing = 0;
+        v.isPublished = 0;
         console.log(v);
         Vehicle.create(v).then(function(vehicle) {
 
@@ -49,9 +50,8 @@ module.exports = {
         var where = { where : {id : req.param('id')}};
 
         Vehicle.update(criteria, where).then(function(rows) {
-
             if (rows.length === 0) return res.notFound();
-            return res.status(201);
+            return res.send(200 , {success : "Successfully updated"});
 
 
         }).catch(function(err) {
@@ -117,7 +117,13 @@ module.exports = {
             });
 
         } else {
+            if (req.param('published')) {
+                where.isPublished = false;
 
+            } else {
+                where.isPublished = true;
+            }
+            
             if (req.query.yearOfManufacture) {
                 where.yearOfManufacture = {$gte: req.query.yearOfManufacture} ;
             }

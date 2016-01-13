@@ -34,8 +34,13 @@ module.exports = {
 			type : Sequelize.STRING
 		},
 		isSponsoredListing : {
-			type : Sequelize.BOOLEAN
-		}
+			type : Sequelize.BOOLEAN,
+      defaultValue : 0
+		},
+    isPublished : {
+      type : Sequelize.BOOLEAN,
+      defaultValue : 0
+    }
   },
   associations: function () {
   	Vehicle.belongsTo(User ,{
