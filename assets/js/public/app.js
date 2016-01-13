@@ -1,8 +1,8 @@
 angular.module('app',['ngRoute',
-	'app.VehicleListingController',
 	'app.AdminPanelController',
 	'app.vehicleController',
-	'app.vehicleServices']
+	'app.vehicleServices',
+	'app.UserDashboardController']
 	).config(['$routeProvider', function($routeProvider){
 		$routeProvider
 			.when('/',{
@@ -19,5 +19,9 @@ angular.module('app',['ngRoute',
 			.when('/sell-vehicle', {
 				templateUrl: 'templates/sellVehicle.html',
 				controller: 'SellVehicleController'
+			})
+			.when('/my-dashboard', {
+				templateUrl: 'templates/userDashboard.html',
+				controller: 'UserDashboardController'
 			})
 	}]);

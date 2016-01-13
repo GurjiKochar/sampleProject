@@ -1,15 +1,56 @@
 var adminController = angular.module('app.AdminPanelController',['ngRoute','ui.bootstrap']);
-function AdminPanelController($scope,$routeParams, VehicleListingServices){
-	VehicleListingServices.getVehicles().success(function(response){
-		$scope.vehicles = response.rows;
-	});
+function AdminPanelController($scope,$http,$routeParams, VehicleListingServices){
+	
+
+  $http({
+    method: 'GET',
+    url: '/api/admin/vehicle/search?published=false'
+  }).then(function successCallback(response) {
+      $scope.vehicles = response.data.rows;
+    }, function errorCallback(response) {
+  });
+
 
 	$scope.myInterval = 5000;
   $scope.noWrapSlides = false;
+
+  $scope.publishVehicle = function(vehicleId) {
+
+    $http({
+      method: 'PUT',
+      url: '/api/admin/vehicle/'+vehicleId,
+      data : {isPublished : true}
+    }).then(function successCallback(response) {
+      $http({
+        method: 'GET',
+        url: '/api/admin/vehicle/search?published=false'
+      }).then(function successCallback(response) {
+        $scope.vehicles = response.data.rows;
+      }, function errorCallback(response) {
+      });
+    }, function errorCallback(response) {
+    });
+  };
 }
-AdminPanelController.$inject = ['$scope','$routeParams','VehicleListingServices'];
+AdminPanelController.$inject = ['$scope','$http','$routeParams','VehicleListingServices'];
 
 adminController.controller('AdminPanelController', AdminPanelController);
+
+function QuotesController($scope,$http,$routeParams){
+  
+
+  $http({
+    method: 'GET',
+    url: '/api/vehicle/bid'
+  }).then(function successCallback(response) {
+      $scope.quotes = response.data.rows;
+    }, function errorCallback(response) {
+  });
+
+}
+QuotesController.$inject = ['$scope','$http','$routeParams'];
+
+adminController.controller('QuotesController', QuotesController);
 
 adminController.directive('timeline',['$scope','VehicleListingServices',function($scope,VehicleListingServices) {
     VehicleListingServices.getVehicles().success(function(response){
@@ -81,6 +122,7 @@ adminController.directive('timeline',['$scope','VehicleListingServices',function
   adminController.config(['$routeProvider', function($routeProvider){
 		$routeProvider
 			.when('/admin-panel/quotes',{
-				templateUrl: 'templates/table.html'
+				templateUrl: 'templates/quotes.html',
+        controller: 'QuotesController'
 			})
 	}]);
