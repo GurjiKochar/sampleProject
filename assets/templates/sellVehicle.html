@@ -192,10 +192,10 @@
         ng-class="">
           <label>Add Photos</label>
 
-          <div class="button" ngf-select ng-model="sellVehicleForm.photos" name="file" ngf-pattern="'image/*'"
+          <!-- <div class="button" ngf-select ng-model="sellVehicleForm.photos" name="file" ngf-pattern="'image/*'"
     ngf-accept="'image/*'">Select</div>
-          <!-- For this input field make it required, and have a max length of 25 
-          <div class="button" ngf-select ng-model="sellVehicleForm.photos" ngf-multiple="true">Select</div> -->
+           For this input field make it required, and have a max length of 25 -->
+          <div class="button" ngf-select ng-model="sellVehicleForm.photos" name='file' ngf-multiple="true">Select</div> 
 
           <!-- Also, if signup.name.$dirty is true, show the message depending upon the particular properties truthiness (e.g. required
           and/or maxlength) -->

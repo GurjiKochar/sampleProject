@@ -63,7 +63,7 @@ module.exports.routes = {
     'get /api/cities/:id' : 'MasterCitiesController.find',
 
     //photos
-    'POST /vehicle/:id/photos' : 'VehicleController.savePhotos',
+    'POST /vehicle/:id/photos' : 'VehiclePhotoController.create',
 
   // Custom CRUD Rest Routes
     'get /sellvehicle': { view: 'vehicle/sellvehicle' },

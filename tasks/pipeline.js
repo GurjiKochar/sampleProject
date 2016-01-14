@@ -18,6 +18,8 @@ var tmpPath = '.tmp/public/';
 var cssFilesToInject = [
   '/bower_components/bootstrap/dist/css/bootstrap.css',
   '/bower_components/angular-toastr/dist/angular-toastr.min.css',
+  'styles/common.less',
+  'styles/tmp.less',
   'styles/**/*.css'
 ];
 

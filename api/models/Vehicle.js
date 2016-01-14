@@ -79,6 +79,12 @@ module.exports = {
         as : 'quotes'
       }
     });
+    Vehicle.hasMany(VehiclePhoto , {
+      foreignKey : {
+        name : 'VehicleId',
+        as : 'photos'
+      }
+    });
   },
   options: {
     freezeTableName: false,

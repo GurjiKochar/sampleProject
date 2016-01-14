@@ -73,10 +73,10 @@ module.exports.http = {
 
    //},
 
-    customMiddleware: function(app){
-     //Intended for other middleware that doesn't follow 'app.use(middleware)' convention
-      app.post("/vehicle/:id/photos",multipart());
-    }
+    // customMiddleware: function(app){
+    //  //Intended for other middleware that doesn't follow 'app.use(middleware)' convention
+    //   app.post("/vehicle/:id/photos",multipart());
+    // }
 
   /***************************************************************************
   *                                                                          *

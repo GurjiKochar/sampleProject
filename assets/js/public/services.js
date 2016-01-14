@@ -11,7 +11,11 @@ function VehicleListingServices($http) {
 			url: '/api/vehicle/search?' + queryString
 		});
 	}
-	console.log("done here");
+	listingApi.getVehicle = function(id) {
+		return $http({
+			url: '/api/vehicle/search/' + id
+		});
+	}
 	return listingApi;
 }
 VehicleListingServices.$inject = ['$http'];

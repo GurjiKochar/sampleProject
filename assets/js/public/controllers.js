@@ -7,7 +7,24 @@ function VehicleListingController($scope,$routeParams, VehicleListingServices){
 VehicleListingController.$inject = ['$scope','$routeParams','VehicleListingServices'];
 
 vehicleController.controller('VehicleListingController', VehicleListingController);
+//VehicleDetailController
 
+function VehicleDetailController($scope, $routeParams, VehicleListingServices) {
+	$scope.product = {};
+
+	VehicleListingServices.getVehicle($routeParams.id).success(function(response){
+		if(response.data && response.data.rows && response.data.rows[0]){
+			$scope.product = response.data;
+		}
+		
+	})
+}
+VehicleDetailController.$inject = ['$scope','$routeParams','VehicleListingServices'];
+
+vehicleController.controller('VehicleDetailController', VehicleDetailController);
+
+
+//SellVehicleController
 
 function SellVehicleController($scope, $http, Upload){
 	// set-up loading state
@@ -71,14 +88,17 @@ function SellVehicleController($scope, $http, Upload){
 
 	$scope.upload = function (files, vehicleId) {
 		var url = '/vehicle/' + vehicleId + "/photos";
-    if (files ) {
-        Upload.upload({url:url, data: {file: files}}).then(function(response){
+    if (files && files.length) {
+    		for (var i = 0; i < files.length; i++) {
+          Upload.upload({url:url, data: {file: files[i]}}).then(function(response){
 
-        }, function(response){
+	        }, function(response){
 
-        }, function(evt){
+	        }, function(evt){
 
-        });
+	        });
+        }
+        
     }
   }
 
