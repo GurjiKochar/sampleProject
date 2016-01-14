@@ -69,12 +69,14 @@ module.exports.routes = {
     'get /sellvehicle': { view: 'vehicle/sellvehicle' },
 
     // Apis
-
+    'get /api/admin/vehicle/search/:id?': 'VehicleController.find',
+    'put /api/admin/vehicle/:id': 'VehicleController.update',
     'get /api/manufacturer/all': 'ManufacturerController.findAll',
     'get /api/manufacturer/modelnames/:man_id' : 'ModelNameController.findByManufacturerId',
     'get /api/bodytype/all' : 'BodyTypeController.findAll',
-    'get /api/cities/all' : 'MasterCitiesController.findAll',
     'post /api/vehicle/bid': 'QuotesController.create',
+    'get /api/vehicle/bid': 'QuotesController.find',
+    'get /api/vehicle/bid/:vehicleId': 'QuotesController.findForVehicle',
     '/': { view: 'layout' }
 
 };

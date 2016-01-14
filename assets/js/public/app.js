@@ -1,6 +1,8 @@
 angular.module('app',['ngRoute',
+	'app.AdminPanelController',
 	'app.vehicleController',
-	'app.vehicleServices']
+	'app.vehicleServices',
+	'app.UserDashboardController']
 	).config(['$routeProvider', function($routeProvider){
 		$routeProvider
 			.when('/',{
@@ -10,8 +12,16 @@ angular.module('app',['ngRoute',
 				templateUrl: 'templates/vehicleListing.html',
 				controller: 'VehicleListingController as listingController'
 			})
+			.when('/admin-panel',{
+				templateUrl: 'templates/adminPanel.html',
+				controller: 'AdminPanelController as adminController'
+			})
 			.when('/sell-vehicle', {
 				templateUrl: 'templates/sellVehicle.html',
 				controller: 'SellVehicleController'
+			})
+			.when('/my-dashboard', {
+				templateUrl: 'templates/userDashboard.html',
+				controller: 'UserDashboardController'
 			})
 	}]);

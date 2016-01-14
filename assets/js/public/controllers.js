@@ -90,7 +90,7 @@ function SellVehicleController($scope, $http, Upload){
 		// Submit request to Sails.
 		$http.post('/vehicle', {
 			manufacturerId: $scope.sellVehicleForm.manufacturerId,
-			model: $scope.sellVehicleForm.model,
+			modelId: $scope.sellVehicleForm.model,
 			bodyTypeId: $scope.sellVehicleForm.bodyTypeId,
 			minPrice: $scope.sellVehicleForm.minPrice,
 			maxPrice : $scope.sellVehicleForm.maxPrice,

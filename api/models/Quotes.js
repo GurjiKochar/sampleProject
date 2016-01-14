@@ -9,12 +9,12 @@ module.exports = {
 
   attributes: {
 
-  	bidPrice: {
-		type: Sequelize.STRING
-	},
-	action: {
-		type: Sequelize.STRING
-	}
+    bidPrice: {
+  		type: Sequelize.STRING
+  	},
+  	action: {
+  		type: Sequelize.STRING
+  	}
   },
   associations: function() {
   	Quotes.belongsTo(User ,{

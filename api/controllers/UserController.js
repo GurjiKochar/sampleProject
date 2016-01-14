@@ -12,9 +12,9 @@ module.exports = {
   login: function (req, res) {
 
     // Try to look up user using the provided email address
-    User.findOne({
+    User.findOne({where:{
       email: req.param('email')
-    }).then(function foundUser(user) {
+    }}).then(function foundUser(user) {
       
       if (!user) return res.notFound();
 
@@ -39,6 +39,8 @@ module.exports = {
         success: function (){
 
           // Store user id in the user session
+          console.log("===============user id =======");
+          console.log(user.id);
           req.session.me = user.id;
 
           // All done- let the client know that everything worked.
