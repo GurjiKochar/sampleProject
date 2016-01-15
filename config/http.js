@@ -8,7 +8,7 @@
  * For more information on configuration, check out:
  * http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.http.html
  */
-
+var multipart = require('connect-multiparty');
 module.exports.http = {
 
   /****************************************************************************
@@ -21,7 +21,7 @@ module.exports.http = {
   *                                                                           *
   ****************************************************************************/
 
-  // middleware: {
+  //middleware: {
 
   /***************************************************************************
   *                                                                          *
@@ -46,7 +46,7 @@ module.exports.http = {
     //   'favicon',
     //   '404',
     //   '500'
-    // ],
+    //],
 
   /****************************************************************************
   *                                                                           *
@@ -71,7 +71,12 @@ module.exports.http = {
 
     // bodyParser: require('skipper')
 
-  // },
+   //},
+
+    // customMiddleware: function(app){
+    //  //Intended for other middleware that doesn't follow 'app.use(middleware)' convention
+    //   app.post("/vehicle/:id/photos",multipart());
+    // }
 
   /***************************************************************************
   *                                                                          *

@@ -4,6 +4,9 @@
  * @description :: Server-side logic for managing Vehicles
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
+var path = require('path'),
+    fs = require('fs'),
+    _ = require('lodash');
 
 module.exports = {
     // a CREATE action  
@@ -60,6 +63,44 @@ module.exports = {
 
     },
 
+    savePhotos: function(req, res, next) {
+        console.log("reached here");
+        // var data = _.pick(req.body, 'type')
+        // , uploadPath = path.normalize('./uploads/' + req.param('id'))
+        // , file = req.file('file');
+        // console.log(req.file('file'));
+        // var tempPath = req.file('file');
+        //     targetPath = path.resolve('/Users/prashantchaudhary/sampleProject/uploads/image.png');
+        // if (true) {
+        //     fs.rename(file.path, targetPath, function(err) {
+        //         if (err) throw err;
+        //         console.log("Upload completed!");
+        //     });
+        // } else {
+        //     fs.unlink(tempPath, function () {
+        //         if (err) throw err;
+        //         console.error("Only .png files are allowed!");
+        //     });
+        // }
+
+        req.file('file').upload({
+          dirname: path.resolve(sails.config.appPath, './assets/images/' + req.param('id'))
+        },function (err, uploadedFiles) {
+            console.log(uploadedFiles);
+
+          if (err) return res.negotiate(err);
+
+          req.body = {
+                photos : [{url : uploadedFiles[0].UploadedFileMetadata}]
+            }
+
+          return res.json({
+            message: uploadedFiles.length + ' file(s) uploaded successfully!'
+          });
+        });
+
+    },
+
     // a DESTROY action
     destroy: function(req, res, next) {
 
@@ -97,12 +138,13 @@ module.exports = {
         var makeFilter = {model :Manufacturer, attributes:['name']};
         var modelFilter = {model : Model , attributes:['name']};
         var bodyTypeFilter = {model : BodyType , attributes:['name']};
+        var vehiclePhotos = {model: VehiclePhoto, attributes:['url', 'name']};
 
         if (id) {
             where.id = id;
             Vehicle.findAndCountAll({
                 where : where,
-                include: [locationFilter, makeFilter , modelFilter,bodyTypeFilter],
+                include: [locationFilter, makeFilter , modelFilter, bodyTypeFilter, vehiclePhotos],
                 attributes: {exclude : ['UserId','updatedAt','deletedAt']}
             }).then(function(vehicle) {
 
@@ -174,7 +216,7 @@ module.exports = {
 
             Vehicle.findAndCountAll({
                 where : where,
-                include: [locationFilter, makeFilter , modelFilter,bodyTypeFilter],
+                include: [locationFilter, makeFilter , modelFilter, bodyTypeFilter, vehiclePhotos],
                 attributes: {exclude : ['UserId','updatedAt','deletedAt']}
             }).then( function(vehicle) {
 

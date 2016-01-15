@@ -24,4 +24,8 @@ angular.module('app',['ngRoute',
 				templateUrl: 'templates/userDashboard.html',
 				controller: 'UserDashboardController'
 			})
+			.when('/used-truck/:id',{
+				templateUrl: 'templates/vehicleDetail.html',
+				controller: 'VehicleDetailController'
+			})
 	}]);
