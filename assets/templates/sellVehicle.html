@@ -99,9 +99,7 @@
           <label>Manufacturer</label>
 
           <!-- For this input field make it required, and have a max length of 25 -->
-          <select class="form-control" ng-change="unitChanged()" ng-model="sellVehicleForm.manufacturerId">
-            <option selected="selected">Select Manufacturer</option>
-            <option ng-repeat="item in sellVehicleForm.manufacturer" ng-value="item.id">{{item.name}}</option>
+          <select class="form-control" ng-change="unitChanged()" ng-model="sellVehicleForm.make" ng-options="item.name for item in sellVehicleForm.manufacturer">
           </select>
           <!-- Also, if signup.name.$dirty is true, show the message depending upon the particular properties truthiness (e.g. required
           and/or maxlength) -->
@@ -120,9 +118,7 @@
           <label>Model</label>
 
           <!-- For this input field make it required, and have a max length of 25 -->
-          <select class="form-control" ng-model="sellVehicleForm.model">
-            <option selected="selected">Select Model</option>
-            <option ng-repeat="item in sellVehicleForm.modelnames" ng-value="item.id">{{item.name}}</option>
+          <select class="form-control" ng-model="sellVehicleForm.model" ng-options="item.name for item in sellVehicleForm.modelnames">
           </select>
 
           <!-- Also, if signup.name.$dirty is true, show the message depending upon the particular properties truthiness (e.g. required
@@ -140,9 +136,7 @@
           <label>Body Type</label>
 
           <!-- For this input field make it required, and have a max length of 25 -->
-          <select class="form-control" ng-model="sellVehicleForm.bodyTypeId">
-            <option selected="selected">Select Body type</option>
-            <option ng-repeat="item in sellVehicleForm.bodyType" ng-value="item.id">{{item.name}}</option>
+          <select class="form-control" ng-model="sellVehicleForm.bodyType" ng-options="item.name for item in sellVehicleForm.bodyTypes">
           </select>
 
           <!-- Also, if signup.name.$dirty is true, show the message depending upon the particular properties truthiness (e.g. required

@@ -33,6 +33,9 @@ module.exports = {
 		rc_status : {
 			type : Sequelize.STRING
 		},
+    slug : {
+      type : Sequelize.STRING
+    },
 		isSponsoredListing : {
 			type : Sequelize.BOOLEAN,
       defaultValue : 0
