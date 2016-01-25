@@ -18,6 +18,7 @@ var tmpPath = '.tmp/public/';
 var cssFilesToInject = [
   '/bower_components/bootstrap/dist/css/bootstrap.css',
   '/bower_components/angular-toastr/dist/angular-toastr.min.css',
+  'bower_components/ngGallery/src/css/ngGallery.css',
   'styles/common.less',
   'styles/tmp.less',
   'styles/**/*.css'
@@ -40,6 +41,7 @@ var jsFilesToInject = [
   '/bower_components/bootstrap/dist/js/boostrap.js',
   '/bower_components/angular-toastr/dist/angular-toastr.min.js',
   '/bower_components/angularjs-compare-to-directive/compareto.js',
+  'bower_components/ngGallery/src/js/ngGallery.js',
   '/js/stickUp.min.js',
   '/bower_components/ng-file-upload/ng-file-upload.min.js',
 

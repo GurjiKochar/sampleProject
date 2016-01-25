@@ -1,3 +1,89 @@
+<div class="templatemo-top-bar" id="templatemo-top">
+    <div class="container">
+        <div class="subheader">
+            <div id="phone" class="pull-left">
+                    <img src="images/phone.png" alt="phone"/>
+                    090-080-0110
+            </div>
+            <div id="email" class="pull-right">
+            <ul class="nav navbar-nav navbar-right">
+                <% if (req.session.me) { %>
+                <li>
+                    <a href="/logout">Logout</a>
+                </li>
+                <% } else { %>
+                <li>
+                    <a href="#" ng-click="openLogin()">Login</a> 
+                </li>
+                <li>
+                    <a href="#" ng-click="openSignup()">Signup</a>
+                </li>
+                <% } %>
+            </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="templatemo-top-menu">
+    <div class="container">
+        <!-- Static navbar -->
+        <div class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        </button>
+                        <a href="#" class="navbar-brand"><img src="images/templatemo_logo.png" alt="Urbanic Template" title="Urbanic Template" /></a>
+                </div>
+                <div class="navbar-collapse collapse" id="templatemo-nav-bar">
+                    <ul class="nav navbar-nav navbar-right" style="margin-top: 40px;">
+                        <li class="active">
+                            <a href="#templatemo-top">HOME</a>
+                        </li>
+                        <li uib-dropdown on-toggle="toggled(open)" class="dropdown">
+                            <a href id="simple-dropdown" uib-dropdown-toggle>Used Vehicles
+                             <strong class="caret"></strong>
+                             </a>
+                             <ul class="uib-dropdown-menu dropdown-menu" aria-labelledby="simple-dropdown">
+                                    <li>
+                                        <a href="#">Action</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Another action</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Something else here</a>
+                                    </li>
+                                    <li class="divider">
+                                    </li>
+                                    <li>
+                                        <a href="#">Separated link</a>
+                                    </li>
+                                    <li class="divider">
+                                    </li>
+                                    <li>
+                                        <a href="#">One more separated link</a>
+                                    </li>
+                            </ul>      
+                        </li>
+                        <li>
+                            <a href="/sellvehicle" class="external-link">Sell Vehicle</a>
+                        </li>
+                        <li><a href="#templatemo-about">ABOUT</a></li>
+                        <li><a href="#templatemo-portfolio">PORTFOLIO</a></li>
+                        <li><a href="#templatemo-blog">BLOG</a></li>
+                        <li><a rel="nofollow" href="http://www.facebook.com/templatemo" 
+                                class="external-link" target="_parent">EXTERNAL</a></li>
+                        <li><a href="#templatemo-contact">CONTACT</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div><!--/.container-fluid -->
+        </div><!--/.navbar -->
+    </div> <!-- /container -->
+</div>
 <section class="full-container">
   <!-- Breadcrmb begins--> 
   <ul class="breadcrumb"><li class="first js-home"><a href="/">Home</a>/</li><li><a href="/used-cars/" class="brand-link js-used-car">Used cars</a>/</li><li><a href="/used-cars-in-mumbai/" class="city-link js-city-link">Mumbai</a>/</li><li><a href="/used-maruti-suzuki-eeco-cars-in-mumbai/?sort=dd&amp;page=1&amp;filter[type]=mvc&amp;filter[requestFrom]=&amp;city_id=1&amp;filter[model][]=212" class="model-link js-model-link">Maruti Suzuki Eeco</a>/</li><li class="last">Used Maruti Suzuki Eeco 5 Seater with AC in Mumbai</li></ul>  <!-- Breadcrmb ends--> 
@@ -5,32 +91,22 @@
     <li class="content-container">
       <ul class="listing-box listing-box-content info-pictures">
         <li class="upper-image">
-          <img class="lazy" alt="used car 2010 Maruti Suzuki Eeco 5 Seater with AC-4470 Front view view" data-original="//d1bxm722pxmpby.cloudfront.net/4470-1-360.jpg" data-position="0" src="//d1bxm722pxmpby.cloudfront.net/4470-1-360.jpg" style="display: block;">
-          <img class="lazy" alt="used car 2010 Maruti Suzuki Eeco 5 Seater with AC-4470 Dashboard view" data-original="//d1bxm722pxmpby.cloudfront.net/4470-18-360.jpg" data-position="1" src="//d1bxm722pxmpby.cloudfront.net/4470-18-360.jpg" style="display: block;">
+          <img class="lazy" alt="{{display_name}}" data-position="0" src="{{product.VehiclePhotos[0].url}}" style="display: block;">
+          <img class="lazy" alt="{{display_name}}" data-position="1" src="{{product.VehiclePhotos[1].url}}" style="display: block;">
         </li>
-        <li class="lower-image">
-          <img class="lazy" alt="used car 2010 Maruti Suzuki Eeco 5 Seater with AC-4470 Left side View view" data-original="//d1bxm722pxmpby.cloudfront.net/4470-3-360.jpg" data-position="2" src="//d1bxm722pxmpby.cloudfront.net/4470-3-360.jpg" style="display: block;">
-          <img class="lazy" alt="used car 2010 Maruti Suzuki Eeco 5 Seater with AC-4470 Rear View view" data-original="//d1bxm722pxmpby.cloudfront.net/4470-5-360.jpg" data-position="3" src="//d1bxm722pxmpby.cloudfront.net/4470-5-360.jpg" style="display: block;">
-          <img class="lazy" alt="used car 2010 Maruti Suzuki Eeco 5 Seater with AC-4470 Right Side View view" data-original="//d1bxm722pxmpby.cloudfront.net/4470-7-360.jpg" data-position="4" src="//d1bxm722pxmpby.cloudfront.net/4470-7-360.jpg" style="display: block;">
-         
-          <div class="more-image" id="moreImage">
-            <i class="icon-plus"></i>
-            <span>23 photos</span>    
-          </div>
-        
-        </li>
+        <ng-gallery images="product.VehiclePhotos"></ng-gallery>
       </ul>
+
       <div class="listing-box info-details" style="position: fixed; top: 102px;">
         <div class="car-info-wrap">
           <div class="car-info">
-            <h1 class="variant-name" data-car-year="2010" data-car-name="Maruti Suzuki Eeco 5 Seater with AC">
-             2010 Maruti Suzuki Eeco 5 Seater with AC            </h1>
-            <p class="mileage" data-car-mileage="38544">
-              38,544 km
+            <h1 class="variant-name">{{display_name}}</h1>
+            <p class="mileage" data-car-mileage="{{product.kmsDriven}}">
+              {{product.kmsDriven}} km
             </p>
             <div class="currency-emi-wrap">
               <span class="currency" data-car-price="220000">
-                <i class="currency-symbol">₹</i>2,20,000              </span>
+                <i class="currency-symbol">₹</i>{{product.maxPrice}}            </span>
                               <span class="emi-wrap" id="openLoanCalculator">
                   EMI starts at <i class="currency-symbol-small">₹</i>6,300                  <i class="icon-arrow_down"></i>
                 </span>
@@ -349,1041 +425,7 @@
       </ul>
     </div>
   </div>
-  <div class="content-container features-list-wrap" id="featuresWrap">
-    <div class="left-box listing-box">
-      <header class="listing-box-header">Features</header>
-      <ul class="listing-box-content">
-        <li class="features-box">
-          <p class="features-title">Safety</p>
-          <ul class="subfeatures-list">
-                        <!--  for showing active safety feature -->
-                                                        
-                                  <li class="active">
-                                        <span class="icon-Centrallocking feature-icon"></span>
-                    <span class="feature-name">
-                      Central locking 
-                    </span>
-                  </li>
-                 
-                 
-                
-                                                                                      
-                                  <li class="active">
-                                        <span class="icon-Childsafetylocks feature-icon"></span>
-                    <span class="feature-name">
-                      Child safety locks 
-                    </span>
-                  </li>
-                 
-                 
-                
-                                                                                  
-            <!--  for showing inactive safety feature -->
-                                                                    
-                                                  <li class="more-safety">
-                                        <div class="active">
-                                            <span class="icon-ABS feature-icon"></span>
-                      <span class="feature-name"> 
-                        No ABS 
-                      </span>
-                    </div>
-                  </li>
-                                  
-                                                                                      
-                                                  <li class="more-safety">
-                                        <div class="active">
-                                            <span class="icon-Airbags feature-icon"></span>
-                      <span class="feature-name"> 
-                        No Airbags 
-                      </span>
-                    </div>
-                  </li>
-                                  
-                                                                                      
-                                                  <li class="more-safety">
-                                        <div class="active">
-                                            <span class="icon-Rearparkingsensor feature-icon"></span>
-                      <span class="feature-name"> 
-                        No Rear parking sensor 
-                      </span>
-                    </div>
-                  </li>
-                                      <li> 
-                      <span class="feature-name more-feature" data-class-name="more-safety">+ More</span> 
-                    </li>
-                                  
-                                                                                      
-                                  
-                  <li class="more-safety hide">
-                                        <span class="icon-Seatbeltwarning feature-icon"></span>
-                    <span class="feature-name">
-                      No Seat belt warning 
-                    </span>
-                  </li>
-                                
-                                                                                      
-                                  
-                  <li class="more-safety hide">
-                                        <span class="icon-Doorajarwarning feature-icon"></span>
-                    <span class="feature-name">
-                      No Door ajar warning 
-                    </span>
-                  </li>
-                                
-                                                                                      
-                                  
-                  <li class="more-safety hide">
-                                        <span class="icon-Rearcamera feature-icon"></span>
-                    <span class="feature-name">
-                      No Rear camera 
-                    </span>
-                  </li>
-                                
-                                                                                      
-                                  
-                  <li class="more-safety hide">
-                                        <span class="icon-Anti-theftalarm feature-icon"></span>
-                    <span class="feature-name">
-                      No Anti-theft alarm 
-                    </span>
-                  </li>
-                                
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </ul>
-        </li>
-                <li class="features-box">
-          <p class="features-title">Comfort</p>
-          <ul class="subfeatures-list">
-            
-            <!--  for showing active Comfort feature -->
-                                                                                                                        
-                                                  <li class="active">
-                                        <span class="icon-AirConditioner feature-icon"></span>
-                    <span class="feature-name">
-                     Air Conditioner                    </span>
 
-                  </li>
-                 
-                 
-                                                          
-            <!--  for showing inactive Comfort feature -->
-                                                                                      <li>
-                                        <div class="active">
-                                            <span class="icon-ABS feature-icon"></span>
-                      <span class="feature-name"> 
-                        No ABS 
-                      </span>
-                    </div>
-                  </li>
-                                                                                                                            <li>
-                                        <div class="active">
-                                            <span class="icon-Airbags feature-icon"></span>
-                      <span class="feature-name"> 
-                        No Airbags 
-                      </span>
-                    </div>
-                  </li>
-                                                                                                                            <li>
-                                        <div class="active">
-                                            <span class="icon-Rearparkingsensor feature-icon"></span>
-                      <span class="feature-name"> 
-                        No Rear parking sensor 
-                      </span>
-                    </div>
-                  </li>
-                                                                                                                            <li>
-                                        <div class="active">
-                                            <span class="icon-Seatbeltwarning feature-icon"></span>
-                      <span class="feature-name"> 
-                        No Seat belt warning 
-                      </span>
-                    </div>
-                  </li>
-                                      <li> 
-                      <span class="feature-name more-feature" data-class-name="more-comfort">+ More
-                      </span> 
-                    </li>
-                                                                                                                                                                                                                                                                                                                                                    <li class="more-comfort hide">
-                                        <span class="icon-Powersteering feature-icon"></span>
-                    <span class="feature-name">
-                      No Power steering 
-                    </span>
-                  </li> 
-                                                                                                                          <li class="more-comfort hide">
-                                        <span class="icon-Keylessstart feature-icon"></span>
-                    <span class="feature-name">
-                      No Keyless start 
-                    </span>
-                  </li> 
-                                                                                                                          <li class="more-comfort hide">
-                                        <span class="icon-Audiocontrolsonsteering feature-icon"></span>
-                    <span class="feature-name">
-                      No Audio controls on steering 
-                    </span>
-                  </li> 
-                                                                                                                          <li class="more-comfort hide">
-                                        <span class="icon-AutomaticAdjustableseats feature-icon"></span>
-                    <span class="feature-name">
-                      No Automatic Adjustable seats 
-                    </span>
-                  </li> 
-                                                                                                                          <li class="more-comfort hide">
-                                        <span class="icon-RearACvent feature-icon"></span>
-                    <span class="feature-name">
-                      No Rear AC vent 
-                    </span>
-                  </li> 
-                                                                                                                                                                                                  <li class="more-comfort hide">
-                                        <span class="icon-PowerFoldingORVM feature-icon"></span>
-                    <span class="feature-name">
-                      No Power Folding ORVM 
-                    </span>
-                  </li> 
-                                                                                                                          <li class="more-comfort hide">
-                                        <span class="icon-Tiltsteering feature-icon"></span>
-                    <span class="feature-name">
-                      No Tilt steering 
-                    </span>
-                  </li> 
-                                                                                                                          <li class="more-comfort hide">
-                                        <span class="icon-SunRoof feature-icon"></span>
-                    <span class="feature-name">
-                      No Sun Roof 
-                    </span>
-                  </li> 
-                                                                                                                          <li class="more-comfort hide">
-                                        <span class="icon-RearDefogger feature-icon"></span>
-                    <span class="feature-name">
-                      No Rear Defogger 
-                    </span>
-                  </li> 
-                                                                                                                          <li class="more-comfort hide">
-                                        <span class="icon-CruiseControl feature-icon"></span>
-                    <span class="feature-name">
-                      No Cruise Control 
-                    </span>
-                  </li> 
-                                                                      </ul>
-        </li>
-                <li class="features-box">
-          <p class="features-title">Accessories</p>
-          <ul class="subfeatures-list">
-                        
-            <!--  for showing activeAccessories -->
-                                                            <li class="active">
-                                        <span class="icon-MusicSystem feature-icon"></span>
-                    <span class="feature-name">
-                      Music System 
-                    </span>
-                  </li>
-                                                            <li class="active">
-                                        <span class="icon-Leatherseats feature-icon"></span>
-                    <span class="feature-name">
-                      Leather seats 
-                    </span>
-                  </li>
-            
-            <!--  for showing inactive safety feature -->
-                                                    
-                <li>
-                                    <div class="active">
-                                        <span class="icon-GPSNavigationsystem feature-icon"></span>
-                    <span class="feature-name"> 
-                      No GPS Navigation system 
-                    </span>
-                  </div>
-                </li>
-                                        
-                <li>
-                                    <div class="active">
-                                        <span class="icon-Alloywheels feature-icon"></span>
-                    <span class="feature-name"> 
-                      No Alloy wheels 
-                    </span>
-                  </div>
-                </li>
-                                        
-                <li>
-                                    <div class="active">
-                                        <span class="icon-Tubelesstyres feature-icon"></span>
-                    <span class="feature-name"> 
-                      No Tubeless tyres 
-                    </span>
-                  </div>
-                </li>
-                                        
-                <li>
-                                    <div class="active">
-                                        <span class="icon-Foglamps feature-icon"></span>
-                    <span class="feature-name"> 
-                      No Fog lamps 
-                    </span>
-                  </div>
-                </li>
-                      </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <div class="content-container" id="reportsWrap">
-    <div class="left-box listing-box">
-      <header class="listing-box-header">Inspection Report</header>
-      <ul class="inspection-report">
-        <li class="inspection-overview">
-          <ul>
-            <li>
-              <div class="upper-icon">
-                <i class="icon-inspected-by inspection-overview-icon"></i>
-                <span class="inspected-by-text">Inspected By</span>  
-              </div>
-              <div class="inspection-overview-right-box">
-                <div class="inspected-by">
-                                    <img data-original="//dw745fgl22f1q.cloudfront.net/images/inspectors/Siddharth.jpg" class="lazy inspector" height="50px" src="//dw745fgl22f1q.cloudfront.net/images/inspectors/Siddharth.jpg" style="display: inline-block;">
-                </div>
-                <div class="ul-wrapper"> 
-                  <ul class="inspected-exp-cars">
-                    <li class="inspector-name">Siddharth</li>
-                    <li class="inspector-year">7+ Years Experience</li>
-                    <li class="inspector-no">1900+ Cars Inspected</li>
-                  </ul>
-                </div>
-                              </div>
-            </li>
-            <li class="inspection-middle">
-              <div class="upper-icon">
-                <i class="icon-trust inspection-overview-icon"></i>
-                <span class="inspected-by-text">Truebil Trust</span>  
-              </div>
-              <div class="inspection-overview-right-box">
-                <div class="ul-wrapper"> 
-                  <p class="outperform-text">We outperform ourselves when it comes to quality check</p>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="upper-icon">
-                <i class="icon-genuine inspection-overview-icon"></i>
-                <span class="inspected-by-text">Truebil Assured</span>  
-              </div>
-              <div class="inspection-overview-right-box">
-                <div class="ul-wrapper"> 
-                  <ul class="assured-ul">
-                    <li>
-                      <i class="icon-check listing-pros-icon"></i>
-                      <span>No accidental history</span>
-                    </li>
-                    <li>
-                      <i class="icon-check listing-pros-icon"></i>
-                      <span>Passed our 150 checkpoint</span>
-                    </li>
-                    <li>
-                      <i class="icon-check listing-pros-icon"></i>
-                      <span>Only 75% cars qualify test</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </li>
-        <li class="report-nav">
-          <ul class="left-nav">
-            <li class="category-tab-heading active hide-border" data-content-id="reportExteriorWrap" data-position="0" data-ga-category="dedicated_report" data-ga-action="navigate_report_categories" data-ga-label="" data-ga-track="true">
-              <span class="inspection-name">EXTERIOR</span>
-              <div class="inspection-rating">
-                4.6              </div>
-            </li>
-            <li class="category-tab-heading" data-content-id="reportInteriorWrap" data-position="1" data-ga-category="dedicated_report" data-ga-action="navigate_report_categories" data-ga-label="" data-ga-track="true">
-              <span class="inspection-name">Interior</span> 
-              <span class="inspection-rating">
-                4.7              </span>
-            </li>
-            <li class="category-tab-heading" data-content-id="reportEngineWrap" data-position="2" data-ga-category="dedicated_report" data-ga-action="navigate_report_categories" data-ga-label="" data-ga-track="true">
-              <span class="inspection-name">Engine</span> 
-              <span class="inspection-rating">
-                4.5              </span>
-            </li>
-            <li class="category-tab-heading" data-content-id="reportRoadTestWrap" data-position="3" data-ga-category="dedicated_report" data-ga-action="navigate_report_categories" data-ga-label="" data-ga-track="true">
-              <span class="inspection-name">Road Test</span> 
-              <span class="inspection-rating">
-                4.3              </span>
-            </li>
-            <li class="category-tab-heading" data-content-id="reportTyresWrap" data-position="4" data-ga-category="dedicated_report" data-ga-action="navigate_report_categories" data-ga-label="" data-ga-track="true">
-              <span class="inspection-name">Tyres</span> 
-              <span class="inspection-rating">
-                3.1              </span>
-            </li>
-          </ul>
-                    <ul class="reports-content-box">
-                          <li class="ExteriorWrap reports-container " id="reportExteriorWrap">
-                <ul class="report-category-list-wrap">
-                   
-                    <li class="report-category-list">
-                    <div class="report-details">
-                      <div class="report-category-list-name">
-                        <span class="name"> Body </span>
-                                              </div>
-                                              <div class="category-section">
-                                                      <div class="positive-comment-wrap comment-wrap">
-                                                                   
-                                     <div class="comment-icon-wrap">
-                                       <i class="icon-check listing-pros-icon"></i>
-                                       <p class="comment">No Rusting on outer body panels.</p>
-                                     </div>
-                                                                                                                                         
-                                     <div class="comment-icon-wrap">
-                                       <i class="icon-check listing-pros-icon"></i>
-                                       <p class="comment">Right side pillar A, B &amp; C has no damage and factory seal intact.</p>
-                                     </div>
-                                                                                                                                         
-                                     <div class="comment-icon-wrap">
-                                       <i class="icon-check listing-pros-icon"></i>
-                                       <p class="comment">Left side pillar A, B &amp; C has no damage and factory seal intact.</p>
-                                     </div>
-                                                                                                                                 </div>
-                                                                                <div class="negative-comment-wrap comment-wrap">
-                                                                                                <div class="comment-icon-wrap">
-                                    <i class="icon-cross listing-cons-icon"></i>
-                                    <p class="comment">Dent in Dickie</p>
-                                  </div>
-                                                                                                                                                                <div class="comment-icon-wrap">
-                                    <i class="icon-cross listing-cons-icon"></i>
-                                    <p class="comment">Scratch on Left Rear Door</p>
-                                  </div>
-                                                                                                    <div class="comment-icon-wrap">
-                                       <p class="more-comment"> +
-                                        7     More </p>
-                                    </div>
-                                                                                                                                <div class="comment-icon-wrap js-more-comment hide">
-                                    <i class="icon-cross listing-cons-icon"></i>
-                                    <p class="comment">Scratch on Right Front Door</p>
-                                  </div>
-                                                                                                                                                                <div class="comment-icon-wrap js-more-comment hide">
-                                    <i class="icon-cross listing-cons-icon"></i>
-                                    <p class="comment">Scratch on Right Rear Door</p>
-                                  </div>
-                                                                                                                                                                <div class="comment-icon-wrap js-more-comment hide">
-                                    <i class="icon-cross listing-cons-icon"></i>
-                                    <p class="comment">Left Fender is Damaged</p>
-                                  </div>
-                                                                                                                                                                <div class="comment-icon-wrap js-more-comment hide">
-                                    <i class="icon-cross listing-cons-icon"></i>
-                                    <p class="comment">Dent in Left quarter panel</p>
-                                  </div>
-                                                                                                                                                                <div class="comment-icon-wrap js-more-comment hide">
-                                    <i class="icon-cross listing-cons-icon"></i>
-                                    <p class="comment">Scratch on Left quarter panel</p>
-                                  </div>
-                                                                                                                                                                <div class="comment-icon-wrap js-more-comment hide">
-                                    <i class="icon-cross listing-cons-icon"></i>
-                                    <p class="comment">Right Fender is Damaged</p>
-                                  </div>
-                                                                                                                                                                <div class="comment-icon-wrap js-more-comment hide">
-                                    <i class="icon-cross listing-cons-icon"></i>
-                                    <p class="comment">Dent in Right quarter panel</p>
-                                  </div>
-                                                                                                                          </div>
-                                                    <div class="report-images-container">
-                                                                                          <img data-original="//d1bxm722pxmpby.cloudfront.net/4470-44-125.jpg" alt="Maruti Suzuki Eeco 5 Seater with ACDent in Left quarter panel" data-overlay-src="//d1bxm722pxmpby.cloudfront.net/4470-44-800.jpg" data-caption="Dent in Left quarter panel" class="lazy report-ioverlay" data-ga-category="dedicated_report" data-ga-action="clicked_photo_r" data-ga-label="" data-ga-track="true" src="//d1bxm722pxmpby.cloudfront.net/4470-44-125.jpg" style="display: inline-block;">
-                                                                  
-                                                                                          <img data-original="//d1bxm722pxmpby.cloudfront.net/4470-47-125.jpg" alt="Maruti Suzuki Eeco 5 Seater with ACDent in Dickie" data-overlay-src="//d1bxm722pxmpby.cloudfront.net/4470-47-800.jpg" data-caption="Dent in Dickie" class="lazy report-ioverlay" data-ga-category="dedicated_report" data-ga-action="clicked_photo_r" data-ga-label="" data-ga-track="true" src="//d1bxm722pxmpby.cloudfront.net/4470-47-125.jpg" style="display: inline-block;">
-                                                                  
-                                                                                          <img data-original="//d1bxm722pxmpby.cloudfront.net/4470-48-125.jpg" alt="Maruti Suzuki Eeco 5 Seater with ACDent in Right quarter panel" data-overlay-src="//d1bxm722pxmpby.cloudfront.net/4470-48-800.jpg" data-caption="Dent in Right quarter panel" class="lazy report-ioverlay" data-ga-category="dedicated_report" data-ga-action="clicked_photo_r" data-ga-label="" data-ga-track="true" src="//d1bxm722pxmpby.cloudfront.net/4470-48-125.jpg" style="display: inline-block;">
-                                                                  
-                                                                                          <img data-original="//d1bxm722pxmpby.cloudfront.net/4470-42-125.jpg" alt="Maruti Suzuki Eeco 5 Seater with ACLeft Fender is Damaged" data-overlay-src="//d1bxm722pxmpby.cloudfront.net/4470-42-800.jpg" data-caption="Left Fender is Damaged" class="lazy report-ioverlay" data-ga-category="dedicated_report" data-ga-action="clicked_photo_r" data-ga-label="" data-ga-track="true" src="//d1bxm722pxmpby.cloudfront.net/4470-42-125.jpg" style="display: inline-block;">
-                                                                  
-                                                                                          <img data-original="//d1bxm722pxmpby.cloudfront.net/4470-50-125.jpg" alt="Maruti Suzuki Eeco 5 Seater with ACScratch on Right Front Door" data-overlay-src="//d1bxm722pxmpby.cloudfront.net/4470-50-800.jpg" data-caption="Scratch on Right Front Door" class="lazy report-ioverlay" data-ga-category="dedicated_report" data-ga-action="clicked_photo_r" data-ga-label="" data-ga-track="true" src="//d1bxm722pxmpby.cloudfront.net/4470-50-125.jpg" style="display: inline-block;">
-                                                                                            <div class="more-img">
-                                  +<span class="more-img-count">3</span>
-                                </div>  
-                                    
-                                                                                          <img data-original="//d1bxm722pxmpby.cloudfront.net/4470-43-125.jpg" alt="Maruti Suzuki Eeco 5 Seater with ACScratch on Left Rear Door" data-overlay-src="//d1bxm722pxmpby.cloudfront.net/4470-43-800.jpg" data-caption="Scratch on Left Rear Door" class="lazy report-ioverlay js-more-image-wrap hide" data-ga-category="dedicated_report" data-ga-action="clicked_photo_r" data-ga-label="" data-ga-track="true" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">
-                                                                  
-                                                                                          <img data-original="//d1bxm722pxmpby.cloudfront.net/4470-51-125.jpg" alt="Maruti Suzuki Eeco 5 Seater with ACRight Fender is Damaged" data-overlay-src="//d1bxm722pxmpby.cloudfront.net/4470-51-800.jpg" data-caption="Right Fender is Damaged" class="lazy report-ioverlay js-more-image-wrap hide" data-ga-category="dedicated_report" data-ga-action="clicked_photo_r" data-ga-label="" data-ga-track="true" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">
-                                                                  
-                                                                                          <img data-original="//d1bxm722pxmpby.cloudfront.net/4470-49-125.jpg" alt="Maruti Suzuki Eeco 5 Seater with ACScratch on Right Rear Door" data-overlay-src="//d1bxm722pxmpby.cloudfront.net/4470-49-800.jpg" data-caption="Scratch on Right Rear Door" class="lazy report-ioverlay js-more-image-wrap hide" data-ga-category="dedicated_report" data-ga-action="clicked_photo_r" data-ga-label="" data-ga-track="true" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">
-                                                                  
-                                                                                                              </div>
-                        </div>  
-                                          </div>
-                    </li>
-                   
-                    <li class="report-category-list">
-                    <div class="report-details">
-                      <div class="report-category-list-name">
-                        <span class="name"> Exterior Components </span>
-                                              </div>
-                                              <div class="category-section">
-                                                      <div class="positive-comment-wrap comment-wrap">
-                                                                   
-                                     <div class="comment-icon-wrap">
-                                       <i class="icon-check listing-pros-icon"></i>
-                                       <p class="comment">All door handles are operating properly.</p>
-                                     </div>
-                                                                                                                                         
-                                     <div class="comment-icon-wrap">
-                                       <i class="icon-check listing-pros-icon"></i>
-                                       <p class="comment">Wipers are working properly.</p>
-                                     </div>
-                                                                                                                                 </div>
-                                                                              <div class="report-images-container">
-                                                                                                              </div>
-                        </div>  
-                                          </div>
-                    </li>
-                   
-                    <li class="report-category-list">
-                    <div class="report-details">
-                      <div class="report-category-list-name">
-                        <span class="name"> Glasses </span>
-                                              </div>
-                                              <div class="category-section">
-                                                      <div class="positive-comment-wrap comment-wrap">
-                                                                   
-                                     <div class="comment-icon-wrap">
-                                       <i class="icon-check listing-pros-icon"></i>
-                                       <p class="comment">No scratch &amp; cracks on windshields and windows.</p>
-                                     </div>
-                                                                                                                                 </div>
-                                                                              <div class="report-images-container">
-                                                                                                              </div>
-                        </div>  
-                                          </div>
-                    </li>
-                   
-                    <li class="report-category-list">
-                    <div class="report-details">
-                      <div class="report-category-list-name">
-                        <span class="name"> Lights </span>
-                                              </div>
-                                              <div class="category-section">
-                                                      <div class="positive-comment-wrap comment-wrap">
-                                                                   
-                                     <div class="comment-icon-wrap">
-                                       <i class="icon-check listing-pros-icon"></i>
-                                       <p class="comment">Head lights, Tail lights and other lights functioning normally.</p>
-                                     </div>
-                                                                                                                                         
-                                     <div class="comment-icon-wrap">
-                                       <i class="icon-check listing-pros-icon"></i>
-                                       <p class="comment">Head lights don't have any moisture formation.</p>
-                                     </div>
-                                                                                                                                 </div>
-                                                                                <div class="negative-comment-wrap comment-wrap">
-                                                                                                <div class="comment-icon-wrap">
-                                    <i class="icon-cross listing-cons-icon"></i>
-                                    <p class="comment">Left headlight glass shine is faded</p>
-                                  </div>
-                                                                                                                                                                <div class="comment-icon-wrap">
-                                    <i class="icon-cross listing-cons-icon"></i>
-                                    <p class="comment">Left tail light glass shine is faded</p>
-                                  </div>
-                                                                                                                                                                <div class="comment-icon-wrap">
-                                    <i class="icon-cross listing-cons-icon"></i>
-                                    <p class="comment">Right Headlight glass shine is faded</p>
-                                  </div>
-                                                                                                                          </div>
-                                                    <div class="report-images-container">
-                                                                                          <img data-original="//d1bxm722pxmpby.cloudfront.net/4470-41-125.jpg" alt="Maruti Suzuki Eeco 5 Seater with ACLeft headlight glass shine is faded" data-overlay-src="//d1bxm722pxmpby.cloudfront.net/4470-41-800.jpg" data-caption="Left headlight glass shine is faded" class="lazy report-ioverlay" data-ga-category="dedicated_report" data-ga-action="clicked_photo_r" data-ga-label="" data-ga-track="true" src="//d1bxm722pxmpby.cloudfront.net/4470-41-125.jpg" style="display: inline-block;">
-                                                                  
-                                                                                          <img data-original="//d1bxm722pxmpby.cloudfront.net/4470-46-125.jpg" alt="Maruti Suzuki Eeco 5 Seater with ACLeft tail light glass shine is faded" data-overlay-src="//d1bxm722pxmpby.cloudfront.net/4470-46-800.jpg" data-caption="Left tail light glass shine is faded" class="lazy report-ioverlay" data-ga-category="dedicated_report" data-ga-action="clicked_photo_r" data-ga-label="" data-ga-track="true" src="//d1bxm722pxmpby.cloudfront.net/4470-46-125.jpg" style="display: inline-block;">
-                                                                  
-                                                                                          <img data-original="//d1bxm722pxmpby.cloudfront.net/4470-52-125.jpg" alt="Maruti Suzuki Eeco 5 Seater with ACRight Headlight glass shine is faded" data-overlay-src="//d1bxm722pxmpby.cloudfront.net/4470-52-800.jpg" data-caption="Right Headlight glass shine is faded" class="lazy report-ioverlay" data-ga-category="dedicated_report" data-ga-action="clicked_photo_r" data-ga-label="" data-ga-track="true" src="//d1bxm722pxmpby.cloudfront.net/4470-52-125.jpg" style="display: inline-block;">
-                                                                  
-                                                                                                              </div>
-                        </div>  
-                                          </div>
-                    </li>
-                                  </ul>
-              </li> 
-                                        <li class="InteriorWrap reports-container hide" id="reportInteriorWrap">
-                <ul class="report-category-list-wrap">
-                   
-                    <li class="report-category-list">
-                    <div class="report-details">
-                      <div class="report-category-list-name">
-                        <span class="name"> Air Conditioner </span>
-                                              </div>
-                                              <div class="category-section">
-                                                      <div class="positive-comment-wrap comment-wrap">
-                                                                   
-                                     <div class="comment-icon-wrap">
-                                       <i class="icon-check listing-pros-icon"></i>
-                                       <p class="comment">Vent air flow operate as designed.</p>
-                                     </div>
-                                                                                                                                         
-                                     <div class="comment-icon-wrap">
-                                       <i class="icon-check listing-pros-icon"></i>
-                                       <p class="comment">Heating &amp; Air Cooling condition operating as designed.</p>
-                                     </div>
-                                                                                                                                 </div>
-                                                                              <div class="report-images-container">
-                                                                                                              </div>
-                        </div>  
-                                          </div>
-                    </li>
-                   
-                    <li class="report-category-list">
-                    <div class="report-details">
-                      <div class="report-category-list-name">
-                        <span class="name"> Body Panel </span>
-                                              </div>
-                                              <div class="category-section">
-                                                      <div class="positive-comment-wrap comment-wrap">
-                                                                   
-                                     <div class="comment-icon-wrap">
-                                       <i class="icon-check listing-pros-icon"></i>
-                                       <p class="comment">No scratch, dent or discoloration in interior body panels.</p>
-                                     </div>
-                                                                                                                                         
-                                     <div class="comment-icon-wrap">
-                                       <i class="icon-check listing-pros-icon"></i>
-                                       <p class="comment">No Rusting in trunk floor.</p>
-                                     </div>
-                                                                                                                                 </div>
-                                                                              <div class="report-images-container">
-                                                                                                              </div>
-                        </div>  
-                                          </div>
-                    </li>
-                   
-                    <li class="report-category-list">
-                    <div class="report-details">
-                      <div class="report-category-list-name">
-                        <span class="name"> Interior Components </span>
-                                              </div>
-                                              <div class="category-section">
-                                                      <div class="positive-comment-wrap comment-wrap">
-                                                                   
-                                     <div class="comment-icon-wrap">
-                                       <i class="icon-check listing-pros-icon"></i>
-                                       <p class="comment">Interior door handles are operating properly.</p>
-                                     </div>
-                                                                                                                                         
-                                     <div class="comment-icon-wrap">
-                                       <i class="icon-check listing-pros-icon"></i>
-                                       <p class="comment">All knobs and switches are operating smoothly.</p>
-                                     </div>
-                                                                                                                                         
-                                     <div class="comment-icon-wrap">
-                                       <i class="icon-check listing-pros-icon"></i>
-                                       <p class="comment">Horn is functioning properly.</p>
-                                     </div>
-                                                                                                                                 </div>
-                                                                              <div class="report-images-container">
-                                                                                                              </div>
-                        </div>  
-                                          </div>
-                    </li>
-                   
-                    <li class="report-category-list">
-                    <div class="report-details">
-                      <div class="report-category-list-name">
-                        <span class="name"> Seats </span>
-                                              </div>
-                                              <div class="category-section">
-                                                      <div class="positive-comment-wrap comment-wrap">
-                                                                   
-                                     <div class="comment-icon-wrap">
-                                       <i class="icon-check listing-pros-icon"></i>
-                                       <p class="comment">No stain, wear &amp; tear in seats.</p>
-                                     </div>
-                                                                                                                                 </div>
-                                                                              <div class="report-images-container">
-                                                                                                              </div>
-                        </div>  
-                                          </div>
-                    </li>
-                                  </ul>
-              </li> 
-                                        <li class="EngineWrap reports-container hide" id="reportEngineWrap">
-                <ul class="report-category-list-wrap">
-                   
-                    <li class="report-category-list">
-                    <div class="report-details">
-                      <div class="report-category-list-name">
-                        <span class="name"> Battery </span>
-                                              </div>
-                                              <div class="category-section">
-                                                      <div class="positive-comment-wrap comment-wrap">
-                                                                   
-                                     <div class="comment-icon-wrap">
-                                       <i class="icon-check listing-pros-icon"></i>
-                                       <p class="comment">Battery condition is good.</p>
-                                     </div>
-                                                                                                                                 </div>
-                                                                              <div class="report-images-container">
-                                                                                                              </div>
-                        </div>  
-                                          </div>
-                    </li>
-                   
-                    <li class="report-category-list">
-                    <div class="report-details">
-                      <div class="report-category-list-name">
-                        <span class="name"> Fixtures </span>
-                                              </div>
-                                              <div class="category-section">
-                                                      <div class="positive-comment-wrap comment-wrap">
-                                                                   
-                                     <div class="comment-icon-wrap">
-                                       <i class="icon-check listing-pros-icon"></i>
-                                       <p class="comment">No bodywork or rusting in the firewall.</p>
-                                     </div>
-                                                                                                                                         
-                                     <div class="comment-icon-wrap">
-                                       <i class="icon-check listing-pros-icon"></i>
-                                       <p class="comment">No rusting or bodywork in apron.</p>
-                                     </div>
-                                                                                                                                         
-                                     <div class="comment-icon-wrap">
-                                       <i class="icon-check listing-pros-icon"></i>
-                                       <p class="comment">Factory bolts and seals of bonnet frame are intact.</p>
-                                     </div>
-                                                                                                                                 </div>
-                                                                              <div class="report-images-container">
-                                                                                                              </div>
-                        </div>  
-                                          </div>
-                    </li>
-                   
-                    <li class="report-category-list">
-                    <div class="report-details">
-                      <div class="report-category-list-name">
-                        <span class="name"> Health </span>
-                                              </div>
-                                              <div class="category-section">
-                                                      <div class="positive-comment-wrap comment-wrap">
-                                                                   
-                                     <div class="comment-icon-wrap">
-                                       <i class="icon-check listing-pros-icon"></i>
-                                       <p class="comment">Engine is intact and no overhauling done before.</p>
-                                     </div>
-                                                                                                                                         
-                                     <div class="comment-icon-wrap">
-                                       <i class="icon-check listing-pros-icon"></i>
-                                       <p class="comment">No blowback observed in the Engine.</p>
-                                     </div>
-                                                                                                                                         
-                                     <div class="comment-icon-wrap">
-                                       <i class="icon-check listing-pros-icon"></i>
-                                       <p class="comment">Engine is free of oil leakage.</p>
-                                     </div>
-                                                                                                                                 </div>
-                                                                              <div class="report-images-container">
-                                                                                                              </div>
-                        </div>  
-                                          </div>
-                    </li>
-                                  </ul>
-              </li> 
-                                        <li class="RoadTestWrap reports-container hide" id="reportRoadTestWrap">
-                <ul class="report-category-list-wrap">
-                   
-                    <li class="report-category-list">
-                    <div class="report-details">
-                      <div class="report-category-list-name">
-                        <span class="name"> Malfunction </span>
-                                              </div>
-                                              <div class="category-section">
-                                                      <div class="positive-comment-wrap comment-wrap">
-                                                                   
-                                     <div class="comment-icon-wrap">
-                                       <i class="icon-check listing-pros-icon"></i>
-                                       <p class="comment">No abnormal noise from engine.</p>
-                                     </div>
-                                                                                                                                         
-                                     <div class="comment-icon-wrap">
-                                       <i class="icon-check listing-pros-icon"></i>
-                                       <p class="comment">No abnormal noise from tyre.</p>
-                                     </div>
-                                                                                                                                         
-                                     <div class="comment-icon-wrap">
-                                       <i class="icon-check listing-pros-icon"></i>
-                                       <p class="comment">No abnormal noise from gear box.</p>
-                                     </div>
-                                                                                                                                         
-                                     <div class="comment-icon-wrap">
-                                       <i class="icon-check listing-pros-icon"></i>
-                                       <p class="comment">No noise or leakage from axle.</p>
-                                     </div>
-                                                                                                                                 </div>
-                                                                              <div class="report-images-container">
-                                                                                                              </div>
-                        </div>  
-                                          </div>
-                    </li>
-                   
-                    <li class="report-category-list">
-                    <div class="report-details">
-                      <div class="report-category-list-name">
-                        <span class="name"> Pedal </span>
-                                              </div>
-                                              <div class="category-section">
-                                                      <div class="positive-comment-wrap comment-wrap">
-                                                                   
-                                     <div class="comment-icon-wrap">
-                                       <i class="icon-check listing-pros-icon"></i>
-                                       <p class="comment">Transmission/ clutch operates properly with no slipping.</p>
-                                     </div>
-                                                                                                                                         
-                                     <div class="comment-icon-wrap">
-                                       <i class="icon-check listing-pros-icon"></i>
-                                       <p class="comment">Brake is functioning properly with no slipping and free of noise.</p>
-                                     </div>
-                                                                                                                                 </div>
-                                                                                <div class="negative-comment-wrap comment-wrap">
-                                                                                                <div class="comment-icon-wrap">
-                                    <i class="icon-cross listing-cons-icon"></i>
-                                    <p class="comment">Clutch is hard</p>
-                                  </div>
-                                                                                                                          </div>
-                                                    <div class="report-images-container">
-                                                                                                              </div>
-                        </div>  
-                                          </div>
-                    </li>
-                   
-                    <li class="report-category-list">
-                    <div class="report-details">
-                      <div class="report-category-list-name">
-                        <span class="name"> Stability </span>
-                                              </div>
-                                              <div class="category-section">
-                                                      <div class="positive-comment-wrap comment-wrap">
-                                                                   
-                                     <div class="comment-icon-wrap">
-                                       <i class="icon-check listing-pros-icon"></i>
-                                       <p class="comment">Vehicle doesn't pull to the side when brake is applied.</p>
-                                     </div>
-                                                                                                                                         
-                                     <div class="comment-icon-wrap">
-                                       <i class="icon-check listing-pros-icon"></i>
-                                       <p class="comment">Vehicle drives straight on level surface.</p>
-                                     </div>
-                                                                                                                                 </div>
-                                                                              <div class="report-images-container">
-                                                                                                              </div>
-                        </div>  
-                                          </div>
-                    </li>
-                   
-                    <li class="report-category-list">
-                    <div class="report-details">
-                      <div class="report-category-list-name">
-                        <span class="name"> Suspension </span>
-                                              </div>
-                                              <div class="category-section">
-                                                                                <div class="negative-comment-wrap comment-wrap">
-                                                                                                <div class="comment-icon-wrap">
-                                    <i class="icon-cross listing-cons-icon"></i>
-                                    <p class="comment">Abnormal noise from Suspension</p>
-                                  </div>
-                                                                                                                          </div>
-                                                    <div class="report-images-container">
-                                                                                                              </div>
-                        </div>  
-                                          </div>
-                    </li>
-                                  </ul>
-              </li> 
-                                        <li class="TyresWrap reports-container hide" id="reportTyresWrap">
-                <ul class="report-category-list-wrap">
-                   
-                    <li class="report-category-list">
-                    <div class="report-details">
-                      <div class="report-category-list-name">
-                        <span class="name"> Front Left Tyre </span>
-                                                                               <div class="svg radial-progress">
-                              <svg height="3.8em" width="3.8em">
-                                <circle cx="2em" cy="2em" r="1.6em" class="groove-bg"></circle>
-                                <circle class="groove-blue groove-fill-animation" cx="2em" cy="2em" r="1.6em" stroke-dasharray="42 140"></circle>
-                                <circle fill="#fff" cx="2em" cy="2em" r="1.2em"></circle>
-                              </svg>
-                              <p class="groove-value"><span class="groove-per">30% </span> 
-                              <br>life </p>
-                            </div> 
-                            <div class="milageLeft">(approx. 12,000 km)
-                            </div>
-                                              </div>
-                                            <div class="category-section">
-                        <div class="report-images-container tyre-img-data ">
-                                                    
-                                                                                                            <img data-original="//d1bxm722pxmpby.cloudfront.net/4470-10-125.jpg" data-overlay-src="//d1bxm722pxmpby.cloudfront.net/4470-10-800.jpg" data-caption="Front Left Tyre" class="lazy report-ioverlay tyre-img" data-ga-category="dedicated_report" data-ga-action="clicked_photo_r" data-ga-label="" data-ga-track="true" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">
-                                                  </div>
-                        <div class="tyre-comment-data ">
-                                                      <div class="positive-comment-wrap comment-wrap ">
-                                                             <div class="comment-icon-wrap">
-                                 <i class="icon-check listing-pros-icon"></i>
-                                 <p class="comment">No scratch, rusting and damage observed in rim.</p>
-                               </div>
-                                                          </div>
-                                                                                <div class="negative-comment-wrap comment-wrap ">
-                                                               <div class="comment-icon-wrap">
-                                   <i class="icon-cross listing-cons-icon"></i>
-                                   <p class="comment">Front Left Tyre is Hardened</p>
-                                </div>
-                                                           </div>
-                                                  </div>
-                      </div>
-                                          </div>
-                    </li>
-                   
-                    <li class="report-category-list">
-                    <div class="report-details">
-                      <div class="report-category-list-name">
-                        <span class="name"> Front Right Tyre </span>
-                                                                               <div class="svg radial-progress">
-                              <svg height="3.8em" width="3.8em">
-                                <circle cx="2em" cy="2em" r="1.6em" class="groove-bg"></circle>
-                                <circle class="groove-blue groove-fill-animation" cx="2em" cy="2em" r="1.6em" stroke-dasharray="42 140"></circle>
-                                <circle fill="#fff" cx="2em" cy="2em" r="1.2em"></circle>
-                              </svg>
-                              <p class="groove-value"><span class="groove-per">30% </span> 
-                              <br>life </p>
-                            </div> 
-                            <div class="milageLeft">(approx. 12,000 km)
-                            </div>
-                                              </div>
-                                            <div class="category-section">
-                        <div class="report-images-container tyre-img-data ">
-                                                    
-                                                                                                            <img data-original="//d1bxm722pxmpby.cloudfront.net/4470-16-125.jpg" data-overlay-src="//d1bxm722pxmpby.cloudfront.net/4470-16-800.jpg" data-caption="Front Right Tyre" class="lazy report-ioverlay tyre-img" data-ga-category="dedicated_report" data-ga-action="clicked_photo_r" data-ga-label="" data-ga-track="true" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">
-                                                  </div>
-                        <div class="tyre-comment-data ">
-                                                      <div class="positive-comment-wrap comment-wrap ">
-                                                             <div class="comment-icon-wrap">
-                                 <i class="icon-check listing-pros-icon"></i>
-                                 <p class="comment">No scratch, rusting and damage observed in rim.</p>
-                               </div>
-                                                          </div>
-                                                                                <div class="negative-comment-wrap comment-wrap ">
-                                                               <div class="comment-icon-wrap">
-                                   <i class="icon-cross listing-cons-icon"></i>
-                                   <p class="comment">Front Right Tyre is Hardened</p>
-                                </div>
-                                                           </div>
-                                                  </div>
-                      </div>
-                                          </div>
-                    </li>
-                   
-                    <li class="report-category-list">
-                    <div class="report-details">
-                      <div class="report-category-list-name">
-                        <span class="name"> Rear Left Tyre </span>
-                                                                               <div class="svg radial-progress">
-                              <svg height="3.8em" width="3.8em">
-                                <circle cx="2em" cy="2em" r="1.6em" class="groove-bg"></circle>
-                                <circle class="groove-blue groove-fill-animation" cx="2em" cy="2em" r="1.6em" stroke-dasharray="42 140"></circle>
-                                <circle fill="#fff" cx="2em" cy="2em" r="1.2em"></circle>
-                              </svg>
-                              <p class="groove-value"><span class="groove-per">30% </span> 
-                              <br>life </p>
-                            </div> 
-                            <div class="milageLeft">(approx. 12,000 km)
-                            </div>
-                                              </div>
-                                            <div class="category-section">
-                        <div class="report-images-container tyre-img-data ">
-                                                    
-                                                                                                            <img data-original="//d1bxm722pxmpby.cloudfront.net/4470-12-125.jpg" data-overlay-src="//d1bxm722pxmpby.cloudfront.net/4470-12-800.jpg" data-caption="Rear Left Tyre" class="lazy report-ioverlay tyre-img" data-ga-category="dedicated_report" data-ga-action="clicked_photo_r" data-ga-label="" data-ga-track="true" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">
-                                                  </div>
-                        <div class="tyre-comment-data ">
-                                                      <div class="positive-comment-wrap comment-wrap ">
-                                                             <div class="comment-icon-wrap">
-                                 <i class="icon-check listing-pros-icon"></i>
-                                 <p class="comment">No scratch, rusting and damage observed in rim.</p>
-                               </div>
-                                                          </div>
-                                                                                <div class="negative-comment-wrap comment-wrap ">
-                                                               <div class="comment-icon-wrap">
-                                   <i class="icon-cross listing-cons-icon"></i>
-                                   <p class="comment">Rear Left Tyre is Hardened</p>
-                                </div>
-                                                           </div>
-                                                  </div>
-                      </div>
-                                          </div>
-                    </li>
-                   
-                    <li class="report-category-list">
-                    <div class="report-details">
-                      <div class="report-category-list-name">
-                        <span class="name"> Rear Right Tyre </span>
-                                                                               <div class="svg radial-progress">
-                              <svg height="3.8em" width="3.8em">
-                                <circle cx="2em" cy="2em" r="1.6em" class="groove-bg"></circle>
-                                <circle class="groove-blue groove-fill-animation" cx="2em" cy="2em" r="1.6em" stroke-dasharray="42 140"></circle>
-                                <circle fill="#fff" cx="2em" cy="2em" r="1.2em"></circle>
-                              </svg>
-                              <p class="groove-value"><span class="groove-per">30% </span> 
-                              <br>life </p>
-                            </div> 
-                            <div class="milageLeft">(approx. 12,000 km)
-                            </div>
-                                              </div>
-                                            <div class="category-section">
-                        <div class="report-images-container tyre-img-data ">
-                                                    
-                                                                                                            <img data-original="//d1bxm722pxmpby.cloudfront.net/4470-14-125.jpg" data-overlay-src="//d1bxm722pxmpby.cloudfront.net/4470-14-800.jpg" data-caption="Rear Right Tyre" class="lazy report-ioverlay tyre-img" data-ga-category="dedicated_report" data-ga-action="clicked_photo_r" data-ga-label="" data-ga-track="true" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">
-                                                  </div>
-                        <div class="tyre-comment-data ">
-                                                      <div class="positive-comment-wrap comment-wrap ">
-                                                             <div class="comment-icon-wrap">
-                                 <i class="icon-check listing-pros-icon"></i>
-                                 <p class="comment">No scratch, rusting and damage observed in rim.</p>
-                               </div>
-                                                          </div>
-                                                                                <div class="negative-comment-wrap comment-wrap ">
-                                                               <div class="comment-icon-wrap">
-                                   <i class="icon-cross listing-cons-icon"></i>
-                                   <p class="comment">Rear Right Tyre is Hardened</p>
-                                </div>
-                                                           </div>
-                                                  </div>
-                      </div>
-                                          </div>
-                    </li>
-                   
-                    <li class="report-category-list">
-                    <div class="report-details">
-                      <div class="report-category-list-name">
-                        <span class="name"> Spare Tyre </span>
-                                                                               <div class="svg radial-progress">
-                              <svg height="3.8em" width="3.8em">
-                                <circle cx="2em" cy="2em" r="1.6em" class="groove-bg"></circle>
-                                <circle class="groove-blue groove-fill-animation" cx="2em" cy="2em" r="1.6em" stroke-dasharray="42 140"></circle>
-                                <circle fill="#fff" cx="2em" cy="2em" r="1.2em"></circle>
-                              </svg>
-                              <p class="groove-value"><span class="groove-per">30% </span> 
-                              <br>life </p>
-                            </div> 
-                            <div class="milageLeft">(approx. 12,000 km)
-                            </div>
-                                              </div>
-                                            <div class="category-section">
-                        <div class="report-images-container tyre-img-data ">
-                                                    
-                                                                                                            <img data-original="//d1bxm722pxmpby.cloudfront.net/4470-35-125.jpg" data-overlay-src="//d1bxm722pxmpby.cloudfront.net/4470-35-800.jpg" data-caption="Spare Tyre" class="lazy report-ioverlay tyre-img" data-ga-category="dedicated_report" data-ga-action="clicked_photo_r" data-ga-label="" data-ga-track="true" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">
-                                                  </div>
-                        <div class="tyre-comment-data ">
-                                                      <div class="positive-comment-wrap comment-wrap ">
-                                                             <div class="comment-icon-wrap">
-                                 <i class="icon-check listing-pros-icon"></i>
-                                 <p class="comment">Spare tyre is present.</p>
-                               </div>
-                                                          </div>
-                                                                            </div>
-                      </div>
-                                          </div>
-                    </li>
-                                  </ul>
-              </li> 
-                                    </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
   <div class="content-container listing-box similar-car-section">
     <header class="listing-box-header">Similar cars</header>
     <div class="similar-car-container">
