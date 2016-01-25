@@ -1,4 +1,4 @@
-var vehicleController = angular.module('app.vehicleController',['ngFileUpload','jkuri.gallery']);
+var vehicleController = angular.module('app.vehicleController',['ngFileUpload','ui.bootstrap','jkuri.gallery']);
 function VehicleListingController($scope,$routeParams, VehicleListingServices){
 	VehicleListingServices.getVehicles().success(function(response){
 		$scope.vehicles = response.rows;
@@ -11,9 +11,8 @@ vehicleController.controller('VehicleListingController', VehicleListingControlle
 
 function VehicleDetailController($scope, $routeParams, VehicleListingServices) {
 	$scope.product = {};
-
-	VehicleListingServices.getVehicle($routeParams.id).success(function(response){
-		console.log(response);
+	var id = $routeParams.slug.split("-")[$routeParams.slug.split("-").length - 1];
+	VehicleListingServices.getVehicle(id).success(function(response){
 		if(response && response.rows && response.rows[0]){
 			var data = response.rows[0];
 			$scope.product = data;
@@ -56,7 +55,7 @@ function SellVehicleController($scope, $http, Upload){
 	  method: 'GET',
 	  url: '/api/bodytype/all'
 	}).then(function successCallback(response) {
-	    $scope.sellVehicleForm.bodyType = response.data;
+	    $scope.sellVehicleForm.bodyTypes = response.data;
 	}, function errorCallback(response) {
 	});
 
@@ -77,7 +76,8 @@ function SellVehicleController($scope, $http, Upload){
 	  });
 
 	$scope.unitChanged = function () {
-		var man_id = $scope.sellVehicleForm.manufacturerId;
+		var man_id = $scope.sellVehicleForm.make.id;
+		console.log(man_id);
 		if (man_id != "") {
 			$http({
 			  method: 'GET',
@@ -120,9 +120,12 @@ function SellVehicleController($scope, $http, Upload){
 		
 		// Submit request to Sails.
 		$http.post('/vehicle', {
-			manufacturerId: $scope.sellVehicleForm.manufacturerId,
-			modelId: $scope.sellVehicleForm.model,
-			bodyTypeId: $scope.sellVehicleForm.bodyTypeId,
+			manufacturerId: $scope.sellVehicleForm.make.id,
+			manufacturer : $scope.sellVehicleForm.make.name,
+			modelId: $scope.sellVehicleForm.model.id,
+			model : $scope.sellVehicleForm.model.name,
+			bodyTypeId: $scope.sellVehicleForm.bodyType.id,
+			bodyType : $scope.sellVehicleForm.bodyType.name,
 			minPrice: $scope.sellVehicleForm.minPrice,
 			maxPrice : $scope.sellVehicleForm.maxPrice,
 			yearOfManufacture : $scope.sellVehicleForm.yearOfManufacture,

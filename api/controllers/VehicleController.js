@@ -25,13 +25,16 @@ module.exports = {
         v.yearOfManufacture = params.yearOfManufacture;
         v.isSponsoredListing = 0;
         v.isPublished = 0;
-        console.log(v);
         Vehicle.create(v).then(function(vehicle) {
-
-            res.status(201);
-
-            res.json(vehicle);
-
+            //console.log(vehicle);
+            var slug = params.manufacturer.replace(" ","-")+"-"+params.model.replace(" ","-")+"-"+params.bodyType+"-"+v.yearOfManufacture+"model-Rs"+v.maxPrice+"-"+vehicle.id;
+            console.log(slug);
+            Vehicle.update({slug : slug},{where : {id : vehicle.id}}).then(function(veh) {
+                res.status(201);
+                res.json(vehicle);
+            }).catch(function(err) {
+                if (err) console.log(err); return next(err);
+            })
         }).catch(function(err) {
             if (err) console.log(err); return next(err);
         });
