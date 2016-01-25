@@ -1,7 +1,8 @@
 module.exports = {
   
   findAll: function (req, res) {
-        MasterStates.find().then(function (states) {
+        MasterStates.findAll().then(function (states) {
+          console.log("here");
             res.json(states);
           }).catch(function (err) {
             console.log(err);

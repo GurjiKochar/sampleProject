@@ -40,6 +40,7 @@ var jsFilesToInject = [
   '/bower_components/bootstrap/dist/js/boostrap.js',
   '/bower_components/angular-toastr/dist/angular-toastr.min.js',
   '/bower_components/angularjs-compare-to-directive/compareto.js',
+  '/bower_components/angular-ui-router/release/angular-ui-router.min.js',
   '/js/stickUp.min.js',
   '/bower_components/ng-file-upload/ng-file-upload.min.js',
 

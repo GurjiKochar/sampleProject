@@ -61,7 +61,7 @@ module.exports.routes = {
 
     'get /api/cities/all' : 'MasterCitiesController.findAll',
     'get /api/cities/:id' : 'MasterCitiesController.find',
-
+    'get /api/states/all' : 'MasterStatesController.findAll',
     //photos
     'POST /vehicle/:id/photos' : 'VehiclePhotoController.create',
 
@@ -76,7 +76,10 @@ module.exports.routes = {
     'get /api/bodytype/all' : 'BodyTypeController.findAll',
     'post /api/vehicle/bid': 'QuotesController.create',
     'get /api/vehicle/bid': 'QuotesController.find',
-    'get /api/vehicle/bid/:vehicleId': 'QuotesController.findForVehicle',
+    'get /api/vehicle/:vehicleId/bid': 'QuotesController.findForVehicle',
+    'get /api/vehicle/bid/assignee': 'QuotesController.findForAssignee',
+    'put /api/quote/:id': 'QuotesController.update',
+    'put /api/quote/:id/assignee': 'QuotesController.updateAssignee',
     '/': { view: 'layout' }
 
 };

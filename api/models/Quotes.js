@@ -13,14 +13,20 @@ module.exports = {
   		type: Sequelize.STRING
   	},
   	action: {
-  		type: Sequelize.STRING
-  	}
+  		type: Sequelize.ENUM('accepted', 'rejected' ,'pending')
+  	},
+    name: {
+      type: Sequelize.STRING
+    },
+    mobileNumber: {
+      type: Sequelize.STRING
+    }
   },
   associations: function() {
   	Quotes.belongsTo(User ,{
   		foreignKey : {
-  			name : 'UserId',
-  			as : 'users'
+  			name : 'AssigneeId',
+  			as : 'user'
   		}
   	});
 
@@ -41,5 +47,3 @@ module.exports = {
 		hooks: {}
 	}
 };
-
-sequelize.sync();
