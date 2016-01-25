@@ -41,7 +41,7 @@ module.exports = {
 
     User.hasMany(Quotes , {
       foreignKey : {
-        name : 'UserId',
+        name : 'AssigneeId',
         as : 'quotes'
       }
     });

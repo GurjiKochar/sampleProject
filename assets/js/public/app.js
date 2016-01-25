@@ -1,30 +1,39 @@
-angular.module('app',['ngRoute',
+angular.module('app',['ui.router',
 	'app.AdminPanelController',
 	'app.vehicleController',
 	'app.vehicleServices',
 	'app.UserDashboardController']
-	).config(['$routeProvider', function($routeProvider){
-		$routeProvider
-			.when('/',{
+	).config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
+		
+		$urlRouterProvider.otherwise('/');
+
+		$stateProvider
+			.state('home',{
+				url: '/',
 				templateUrl: 'templates/home.html'
 			})
-			.when('/used-trucks/:city?/:brand?/:modal?',{
+			.state('results',{
+				url: '/used-trucks/:city?/:brand?/:modal?',
 				templateUrl: 'templates/vehicleListing.html',
 				controller: 'VehicleListingController as listingController'
 			})
-			.when('/admin-panel',{
+			.state('adminPanel',{
+				url: '/admin-panel',
 				templateUrl: 'templates/adminPanel.html',
 				controller: 'AdminPanelController as adminController'
 			})
-			.when('/sell-vehicle', {
+			.state('sellVehicle', {
+				url: '/sell-vehicle',
 				templateUrl: 'templates/sellVehicle.html',
 				controller: 'SellVehicleController'
 			})
-			.when('/my-dashboard', {
+			.state('userDashboard', {
+				url: '/my-dashboard',
 				templateUrl: 'templates/userDashboard.html',
 				controller: 'UserDashboardController'
 			})
-			.when('/used-truck/:slug',{
+			.state('product',{
+				url: '/used-truck/:slug',
 				templateUrl: 'templates/vehicleDetail.html',
 				controller: 'VehicleDetailController'
 			})

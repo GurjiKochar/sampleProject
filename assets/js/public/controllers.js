@@ -1,17 +1,18 @@
 var vehicleController = angular.module('app.vehicleController',['ngFileUpload','ui.bootstrap','jkuri.gallery']);
 function VehicleListingController($scope,$routeParams, VehicleListingServices){
+
 	VehicleListingServices.getVehicles().success(function(response){
 		$scope.vehicles = response.rows;
 	});
 }
-VehicleListingController.$inject = ['$scope','$routeParams','VehicleListingServices'];
+VehicleListingController.$inject = ['$scope','$stateParams','VehicleListingServices'];
 
 vehicleController.controller('VehicleListingController', VehicleListingController);
 //VehicleDetailController
 
-function VehicleDetailController($scope, $routeParams, VehicleListingServices) {
+function VehicleDetailController($scope, $stateParams, VehicleListingServices) {
 	$scope.product = {};
-	var id = $routeParams.slug.split("-")[$routeParams.slug.split("-").length - 1];
+	var id = $stateParams.slug.split("-")[$routeParams.slug.split("-").length - 1];
 	VehicleListingServices.getVehicle(id).success(function(response){
 		if(response && response.rows && response.rows[0]){
 			var data = response.rows[0];
@@ -29,7 +30,7 @@ function VehicleDetailController($scope, $routeParams, VehicleListingServices) {
 		
 	})
 }
-VehicleDetailController.$inject = ['$scope','$routeParams','VehicleListingServices'];
+VehicleDetailController.$inject = ['$scope','$stateParams','VehicleListingServices'];
 
 vehicleController.controller('VehicleDetailController', VehicleDetailController);
 
@@ -41,7 +42,10 @@ function SellVehicleController($scope, $http, Upload){
 	$scope.sellVehicleForm = {
 		loading: false
 	}
-
+	$scope.status = {
+    isFirstOpen: true,
+    isFirstDisabled: false
+  };
 	$http({
 	  method: 'GET',
 	  url: '/api/manufacturer/all'
