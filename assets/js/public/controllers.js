@@ -1,4 +1,4 @@
-var vehicleController = angular.module('app.vehicleController',['ngFileUpload']);
+var vehicleController = angular.module('app.vehicleController',['ngFileUpload','jkuri.gallery']);
 function VehicleListingController($scope,$routeParams, VehicleListingServices){
 	VehicleListingServices.getVehicles().success(function(response){
 		$scope.vehicles = response.rows;
@@ -13,8 +13,19 @@ function VehicleDetailController($scope, $routeParams, VehicleListingServices) {
 	$scope.product = {};
 
 	VehicleListingServices.getVehicle($routeParams.id).success(function(response){
-		if(response.data && response.data.rows && response.data.rows[0]){
-			$scope.product = response.data;
+		console.log(response);
+		if(response && response.rows && response.rows[0]){
+			var data = response.rows[0];
+			$scope.product = data;
+			$scope.product.VehiclePhotos = data.VehiclePhotos.map(function(photo){
+				return {
+					img:photo.url,
+					thumb:photo.url,
+					url:photo.url
+				};
+			});
+			var tmpArray = [data.yearOfManufacture, data.Manufacturer.name, data.Model.name, data.BodyType.name];
+			$scope.display_name =  tmpArray.join(" "); 
 		}
 		
 	})
