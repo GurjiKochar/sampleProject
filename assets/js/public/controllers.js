@@ -1,4 +1,4 @@
-var vehicleController = angular.module('app.vehicleController',['ngFileUpload','ui.bootstrap','jkuri.gallery']);
+var vehicleController = angular.module('app.vehicleController',['ngFileUpload','ui.bootstrap','jkuri.gallery','ngMaterial']);
 function VehicleListingController($scope,$routeParams, VehicleListingServices){
 
 	VehicleListingServices.getVehicles().success(function(response){
